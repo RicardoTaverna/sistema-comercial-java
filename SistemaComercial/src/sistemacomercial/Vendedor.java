@@ -10,7 +10,7 @@ package sistemacomercial;
  * @author taver
  */
 public class Vendedor {
-    String nome, sobrenome, datanascimento, telefone, CPF, cidade, estatado, pais, endereco, dataCadastro, login, senha;
+    String nome, sobrenome, datanascimento, telefone, CPF, cidade, estado, pais, endereco, dataCadastro, login, senha;
 
     public Vendedor(String nome, String sobrenome, String datanascimento, String telefone, String CPF, String cidade, String estatado, String pais, String endereco, String dataCadastro, String login, String senha) {
         this.nome = nome;
@@ -19,7 +19,7 @@ public class Vendedor {
         this.telefone = telefone;
         this.CPF = CPF;
         this.cidade = cidade;
-        this.estatado = estatado;
+        this.estado = estatado;
         this.pais = pais;
         this.endereco = endereco;
         this.dataCadastro = dataCadastro;
@@ -75,12 +75,12 @@ public class Vendedor {
         this.cidade = cidade;
     }
 
-    public String getEstatado() {
-        return estatado;
+    public String getEstado() {
+        return estado;
     }
 
     public void setEstatado(String estatado) {
-        this.estatado = estatado;
+        this.estado = estado;
     }
 
     public String getPais() {

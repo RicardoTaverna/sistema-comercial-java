@@ -5,6 +5,7 @@
  */
 package sistemacomercial;
 
+import java.util.ArrayList;
 /**
  *
  * @author taver
