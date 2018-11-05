@@ -12,8 +12,8 @@ import java.util.ArrayList;
  * @author taver
  */
 public class Cadastro {
-    private ArrayList<Vendedor> vendedor;
-    private String nome;
+    ArrayList<Vendedor> vendedor;
+    String nome;
     
     public Cadastro(String nome){
         this.setNome(nome);
