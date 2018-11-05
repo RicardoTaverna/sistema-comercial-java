@@ -19,7 +19,7 @@ public class Vendedor {
         this.telefone = telefone;
         this.CPF = CPF;
         this.cidade = cidade;
-        this.estado = estatado;
+        this.estado = estado;
         this.pais = pais;
         this.endereco = endereco;
         this.dataCadastro = dataCadastro;
@@ -79,7 +79,7 @@ public class Vendedor {
         return estado;
     }
 
-    public void setEstatado(String estatado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 

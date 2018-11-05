@@ -17,6 +17,9 @@ public class SistemaComercial {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        Vendedor vendedor1;
+        vendedor1 = new Vendedor("Ricardo", "Taverna", "23/11/1992", "08544666906", "Curitiba", "PR", "Brasil", "Rua qualquer coisa numero 159", "01/11/2018", "ricardo.taverna", "rt@1992");
     }
     
 }
