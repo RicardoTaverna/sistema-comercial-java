@@ -13,20 +13,14 @@ import java.util.ArrayList;
  */
 public class Cadastro {
     ArrayList<Vendedor> vendedor;
-    String nome;
     
-    public Cadastro(String nome){
-        this.setNome(nome);
+    public Cadastro(){
         this.vendedor = new ArrayList<Vendedor>();
     }
     
     public void addVendedor(Vendedor vendedor){
         this.vendedor.add(vendedor);
-        System.out.println("Vendedor " + vendedor + " adicionado");
+        System.out.println("Vendedor " + vendedor.nome + " adicionado");
     }
     
-    //Criado automático pelo NetBeans ao criar this.setNome(nome) dentro de Cadastro(String nome)
-    private void setNome(String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

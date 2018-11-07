@@ -12,6 +12,7 @@ package sistemacomercial;
 public class Cliente {
     String nome, sobrenome, datanascimento, telefone, CPF, cidade, estatado, pais, endereco, dataCadastro;
     int numero;
+    
 
     public Cliente(String nome, String sobrenome, String datanascimento, String telefone, String CPF, String cidade, String estatado, String pais, String endereco, String dataCadastro, int numero) {
         this.nome = nome;

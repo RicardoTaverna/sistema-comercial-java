@@ -5,14 +5,16 @@
  */
 package sistemacomercial;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author taver
  */
 public class Vendedor {
-    String nome, sobrenome, datanascimento, telefone, CPF, cidade, estado, pais, endereco, dataCadastro, login, senha;
+    String nome, sobrenome, datanascimento, telefone, CPF, cidade, estado, pais, endereco, dataCadastro, login, senha, papel;
 
-    public Vendedor(String nome, String sobrenome, String datanascimento, String telefone, String CPF, String cidade, String estatado, String pais, String endereco, String dataCadastro, String login, String senha) {
+    public Vendedor(String nome, String sobrenome, String datanascimento, String telefone, String CPF, String cidade, String estatado, String pais, String endereco, String dataCadastro, String login, String senha, String papel) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.datanascimento = datanascimento;
@@ -25,8 +27,9 @@ public class Vendedor {
         this.dataCadastro = dataCadastro;
         this.login = login;
         this.senha = senha;
+        this.papel = papel;
     }
-
+    
     public String getNome() {
         return nome;
     }
@@ -121,6 +124,14 @@ public class Vendedor {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getPapel() {
+        return papel;
+    }
+
+    public void setPapel(String papel) {
+        this.papel = papel;
     }
     
     
