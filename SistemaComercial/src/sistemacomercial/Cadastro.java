@@ -5,18 +5,21 @@
  */
 package sistemacomercial;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author taver
  */
-public class Cadastro {
-    ArrayList<Vendedor> vendedor;
+public final class Cadastro implements Serializable {
+    public static ArrayList<Vendedor> vendedor;
+    public static ArrayList<Fornecedor> fornecedor;
     
     public Cadastro(){
         this.vendedor = new ArrayList<Vendedor>();
     }
+    
     
     public void addVendedor(Vendedor vendedor){
         this.vendedor.add(vendedor);
