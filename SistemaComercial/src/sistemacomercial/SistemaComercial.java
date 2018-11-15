@@ -5,10 +5,10 @@
  */
 package sistemacomercial;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import static java.lang.System.in;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 
 /**
@@ -16,23 +16,42 @@ import java.io.ObjectOutputStream;
  * @author taver
  */
 public class SistemaComercial {
-
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws FileNotFoundException, IOException {
-        // TODO code application logic here
+    static ArrayList<Vendedor> vendedor = new ArrayList<>();
+    
+    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+        // TODO code application logic here        
         
-        Cadastro cadastroVend1 = new Cadastro();
         
-        cadastroVend1.addVendedor(new Vendedor("Ricardo", "Taverna", "23/11/1992", "(41)999911111", "08544666906", "Curitiba", "PR", "Brasil", "Rua qualquer coisa numero 159", "01/11/2018", "ricardo.taverna", "rt@1992", "comum"));
+        Vendedor Vend1 = new Vendedor("Ricardo", "Taverna", "23/11/1992", "(41)999911111", "08544666906", "Curitiba", "PR", "Brasil", "Rua qualquer coisa numero 159", "01/11/2018", "ricardo.taverna", "rt@1992", "vendedor", vendedor);
+        Vendedor Vend2 = new Vendedor("Ygor", "Alves", "20/07/98", "(41)999992222", "67215343987", "Curitiba", "PR", "Brasil", "Rua qualquer se foe ae 69", "14/11/2018", "ygor.alves", "ya@1998", "vendedorAdm", vendedor);
+ 
+         
+        //Carregar aruivo com os dados das classes
+//        FileInputStream inputFile = new FileInputStream("vendedor.ser");
+//        ObjectInputStream in = new ObjectInputStream(inputFile);
+//        Cadastro cadastroVend1 = (Cadastro) in.readObject();
+//        in.close();
+//        inputFile.close();
         
-        FileOutputStream file = new FileOutputStream("vendedor.ser");
-        ObjectOutputStream objectStrem = new ObjectOutputStream(file);
-        objectStrem.writeObject(cadastroVend1);
-        objectStrem.close();
-        file.close();
-        //System.out.println(vendedor1);
+        Sessao sessao = new Sessao();
+        for(int i = 0; i < vendedor.size(); i = i + 1){
+            System.out.println(vendedor.get(i).getNome());
+        }
+        sessao.login();
+        sessao.sessaoVendedor();
+        
+        
+        //Arquivo de gravação final
+//        FileOutputStream savefile = new FileOutputStream("vendedor.ser");
+//        ObjectOutputStream objectStrem = new ObjectOutputStream(savefile);
+//        objectStrem.writeObject(cadastroVend1);
+//        objectStrem.close();
+//        savefile.close();
+        
     }
     
 }

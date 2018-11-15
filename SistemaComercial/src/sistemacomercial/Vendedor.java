@@ -12,9 +12,10 @@ import java.util.ArrayList;
  * @author taver
  */
 public class Vendedor {
-    String nome, sobrenome, datanascimento, telefone, CPF, cidade, estado, pais, endereco, dataCadastro, login, senha, papel;
-
-    public Vendedor(String nome, String sobrenome, String datanascimento, String telefone, String CPF, String cidade, String estatado, String pais, String endereco, String dataCadastro, String login, String senha, String papel) {
+    private String nome, sobrenome, datanascimento, telefone, CPF, cidade, estado, pais, endereco, dataCadastro, login, senha, papel;
+    
+    
+    public Vendedor(String nome, String sobrenome, String datanascimento, String telefone, String CPF, String cidade, String estatado, String pais, String endereco, String dataCadastro, String login, String senha, String papel, ArrayList<Vendedor> vendedor) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.datanascimento = datanascimento;
@@ -28,7 +29,9 @@ public class Vendedor {
         this.login = login;
         this.senha = senha;
         this.papel = papel;
+        vendedor.add(this);
     }
+    
     
     public String getNome() {
         return nome;
