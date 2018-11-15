@@ -42,7 +42,7 @@ public class SistemaComercial {
             System.out.println(vendedor.get(i).getNome());
         }
         sessao.login();
-        sessao.sessaoVendedor();
+        sessao.newSessao();
         
         
         //Arquivo de gravação final
