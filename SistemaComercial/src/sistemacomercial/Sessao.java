@@ -5,16 +5,19 @@
  */
 package sistemacomercial;
 
+
 import java.util.Scanner;
 import static sistemacomercial.SistemaComercial.vendedor;
 
 
 /**
  *
- * @author taver
+ * @author taverna, yago, milico
  */
 public class Sessao{
     String inpLogin, inpSenha, validaPapel;
+    boolean validador = false;
+    int inpMenuVendedor;
     
     public void login(){
         Scanner scan = new Scanner(System.in);
@@ -24,7 +27,6 @@ public class Sessao{
         inpSenha = scan.nextLine();
         
         //leitura de todos os vendedores para validação do login
-        boolean validador = false;
         boolean negativo = false;
         Vendedor tempVendedor;
         
@@ -49,23 +51,52 @@ public class Sessao{
     }
     
     public void newSessao(){
-        System.out.println("|---- Menu Vendedor ----|");
-        System.out.println("|---- 1) Cadastrar Vendedor ---|");
-        System.out.println("|---- 2) Cadastrar Cliente ---|");
-        System.out.println("|---- 3) Cadastrar Fornecedor ----|");
-        System.out.println("|---- 4) Cadastrar Produto ----|");
-        System.out.println("|---- 5) Listar Vendedor ----|");
-        System.out.println("|---- 6) Listar Cliente ----|");
-        System.out.println("|---- 7) Listar Fornecedor ----|");
-        System.out.println("|---- 8) Listar Produtos ----|");
-        System.out.println("|---- 9) Registrar Venda ----|");
-        System.out.println("|---- 10) Listar Vendas ----|");
-        System.out.println("|---- 11) Fechamento do Dia ----|");
-    
-    public void sessaoVendedor(){
-        if(validaPapel.equals("vendedor")){
+        if (validador == true) {
+            for (int i = 0; i < 50; ++i) System.out.println();
+            System.out.println("|---- Menu Vendedor ----|");
+            System.out.println("|---- 1) Cadastrar Vendedor ---|");
+            System.out.println("|---- 2) Cadastrar Cliente ---|");
+            System.out.println("|---- 3) Cadastrar Fornecedor ----|");
+            System.out.println("|---- 4) Cadastrar Produto ----|");
+            System.out.println("|---- 5) Listar Vendedor ----|");
+            System.out.println("|---- 6) Listar Cliente ----|");
+            System.out.println("|---- 7) Listar Fornecedor ----|");
+            System.out.println("|---- 8) Listar Produtos ----|");
+            System.out.println("|---- 9) Registrar Venda ----|");
+            System.out.println("|---- 10) Listar Vendas ----|");
+            System.out.println("|---- 11) Fechamento do Dia ----|");
             
+            System.out.println("Escolha o número do MENU");
+            Scanner scan = new Scanner(System.in);
+            inpMenuVendedor = scan.nextInt();
+            
+            
+            switch(inpMenuVendedor){
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    listarVendedor();
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                    
+                    
+                default:
+                    System.out.println("Numero inexistente");
+                    newSessao();
+            }    
         }
-        
     }
+    
+    public void listarVendedor() {
+        System.out.println("");
+    }
+
+    
+     
 }
