@@ -15,8 +15,9 @@ import static sistemacomercial.SistemaComercial.vendedor;
  * @author taverna, yago, milico
  */
 public class Sessao{
-    String inpLogin, inpSenha, validaPapel, inpMenuVendedor;
+    String inpLogin, inpSenha, validaPapel;
     boolean validador = false;
+    int inpMenuVendedor;
     
     public void login(){
         Scanner scan = new Scanner(System.in);
@@ -65,10 +66,37 @@ public class Sessao{
             System.out.println("|---- 10) Listar Vendas ----|");
             System.out.println("|---- 11) Fechamento do Dia ----|");
             
+            System.out.println("Escolha o número do MENU");
             Scanner scan = new Scanner(System.in);
-            inpMenuVendedor = scan.nextLine();
+            inpMenuVendedor = scan.nextInt();
+            
+            
+            switch(inpMenuVendedor){
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    listarVendedor();
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                    
+                    
+                default:
+                    System.out.println("Numero inexistente");
+                    newSessao();
+            }    
         }
-        
-        
     }
+    
+    public void listarVendedor() {
+        System.out.println("");
+    }
+
+    
+     
 }
