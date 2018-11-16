@@ -17,7 +17,7 @@ import static sistemacomercial.SistemaComercial.vendedor;
 public class Sessao{
     String inpLogin, inpSenha, validaPapel;
     boolean validador = false;
-    int inpMenuVendedor;
+    int inpMenuVendedor, inpDigito;
     
     public void login(){
         Scanner scan = new Scanner(System.in);
@@ -78,6 +78,7 @@ public class Sessao{
                 case 4:
                 case 5:
                     listarVendedor();
+                    break;
                 case 6:
                 case 7:
                 case 8:
@@ -94,7 +95,38 @@ public class Sessao{
     }
     
     public void listarVendedor() {
-        System.out.println("");
+        if ("vendedorAdm".equals(validaPapel)){
+            for(int i = 0; i < vendedor.size(); i = i + 1){          
+                System.out.println( i + "- " +vendedor.get(i).getNome() + " " +  vendedor.get(i).getSobrenome());               
+            }
+        }else{
+            int dadosPessoais = 0;
+            for(int i = 0; i<vendedor.size(); i ++){
+                if (vendedor.get(i).getLogin().equals(inpLogin)){
+                    dadosPessoais = i;
+                    i = vendedor.size() +1;                              
+                }                      
+            }
+            System.out.println(vendedor.get(dadosPessoais).getNome() + " " +  vendedor.get(dadosPessoais).getSobrenome());
+            System.out.println("Digite 1 para editar seus dados \n Ou digite 2 para sair");
+            Scanner scan = new Scanner(System.in);
+            inpDigito = scan.nextInt();
+            switch(inpDigito){
+            case 1:
+                System.out.println(vendedor.get(dadosPessoais));
+                break;
+                
+            case 2:
+                break;
+            default:
+               while(inpDigito >2 || inpDigito <0){ 
+                   System.out.println("Erro, digite 1 para editar ou 2 para sair!");
+                    inpDigito = scan.nextInt();
+               }
+                break;
+            }
+        
+        }
     }
 
     
