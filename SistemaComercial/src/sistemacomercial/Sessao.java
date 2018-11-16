@@ -95,9 +95,18 @@ public class Sessao{
     }
     
     public void listarVendedor() {
+        Scanner scan = new Scanner(System.in);
+        inpDigito = scan.nextInt();
         if ("vendedorAdm".equals(validaPapel)){
             for(int i = 0; i < vendedor.size(); i = i + 1){          
-                System.out.println( i + "- " +vendedor.get(i).getNome() + " " +  vendedor.get(i).getSobrenome());               
+                System.out.println( i + "- " +vendedor.get(i).getNome() + " " +  vendedor.get(i).getSobrenome());   
+
+            }
+            System.out.println("Digite o Numero do Vendedor ");
+            inpDigito = scan.nextInt();
+            if(inpDigito == 1){
+                //switch
+                
             }
         }else{
             int dadosPessoais = 0;
@@ -109,22 +118,15 @@ public class Sessao{
             }
             System.out.println(vendedor.get(dadosPessoais).getNome() + " " +  vendedor.get(dadosPessoais).getSobrenome());
             System.out.println("Digite 1 para editar seus dados \n Ou digite 2 para sair");
-            Scanner scan = new Scanner(System.in);
-            inpDigito = scan.nextInt();
-            switch(inpDigito){
-            case 1:
-                System.out.println(vendedor.get(dadosPessoais));
-                break;
-                
-            case 2:
-                break;
-            default:
-               while(inpDigito >2 || inpDigito <0){ 
-                   System.out.println("Erro, digite 1 para editar ou 2 para sair!");
-                    inpDigito = scan.nextInt();
-               }
-                break;
+            
+            while(inpDigito >2 || inpDigito <0){
+                System.out.println("Digite 1 para editar seus dados \n Ou digite 2 para sair");
+                inpDigito = scan.nextInt();
             }
+            if(inpDigito == 1){
+                System.out.println(vendedor.get(dadosPessoais));
+            }
+
         
         }
     }
