@@ -145,10 +145,10 @@ public class Sessao{
                 System.out.println("10 - " +vendedor.get(dadosPessoais).getDataCadastro());
                 System.out.println("11 - " +vendedor.get(dadosPessoais).getLogin());
                 System.out.println("12 - " +vendedor.get(dadosPessoais).getSenha());
-                System.out.println("12 - " +vendedor.get(dadosPessoais));
-                
-                
                
+                
+                
+               //criar um switch para cada um
                 System.out.println("Digite seu novo nome ");
                 String novo = scan.next();
                 vendedor.get(dadosPessoais).setNome(novo);
