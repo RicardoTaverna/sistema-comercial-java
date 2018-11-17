@@ -38,9 +38,8 @@ public class SistemaComercial {
 //        inputFile.close();
         
         Sessao sessao = new Sessao();
-        for(int i = 0; i < vendedor.size(); i = i + 1){
-            System.out.println(vendedor.get(i).getNome());
-        }
+        System.out.println("|---- Sistema Comercial TYL ----|");
+        System.out.println("|---- Preencha os campos login e senha para começar a utilizar");
         sessao.login();
         sessao.newSessao();
         
