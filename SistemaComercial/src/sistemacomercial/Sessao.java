@@ -7,6 +7,7 @@ package sistemacomercial;
 
 
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 import static sistemacomercial.SistemaComercial.vendedor;
 
 
@@ -49,7 +50,15 @@ public class Sessao{
         }
        
     }
-    
+ public static void alterar() {
+        String nome = JOptionPane.showInputDialog("Digite o Nome do Aluno que deseja Alterar");
+        String novo = JOptionPane.showInputDialog("Digite o Novo Nome");
+        for (int i = 0; i < vendedor.size(); i++) {
+            if (vendedor.get(i).getNome().equals(nome)) {
+                vendedor.get(i).setNome(novo);
+            }
+        }
+    }
     public void newSessao(){
         if (validador == true) {
             for (int i = 0; i < 50; ++i) System.out.println();
@@ -96,7 +105,7 @@ public class Sessao{
     
     public void listarVendedor() {
         Scanner scan = new Scanner(System.in);
-        inpDigito = scan.nextInt();
+        
         if ("vendedorAdm".equals(validaPapel)){
             for(int i = 0; i < vendedor.size(); i = i + 1){          
                 System.out.println( i + "- " +vendedor.get(i).getNome() + " " +  vendedor.get(i).getSobrenome());   
@@ -118,13 +127,34 @@ public class Sessao{
             }
             System.out.println(vendedor.get(dadosPessoais).getNome() + " " +  vendedor.get(dadosPessoais).getSobrenome());
             System.out.println("Digite 1 para editar seus dados \n Ou digite 2 para sair");
-            
-            while(inpDigito >2 || inpDigito <0){
+            inpDigito = scan.nextInt();
+            while(inpDigito != 2 && inpDigito != 1){
                 System.out.println("Digite 1 para editar seus dados \n Ou digite 2 para sair");
                 inpDigito = scan.nextInt();
             }
             if(inpDigito == 1){
-                System.out.println(vendedor.get(dadosPessoais));
+                System.out.println("1 - " +vendedor.get(dadosPessoais).getNome());
+                System.out.println("2 - " +vendedor.get(dadosPessoais).getSobrenome());
+                System.out.println("3 - " +vendedor.get(dadosPessoais).getDatanascimento());
+                System.out.println("4 - " +vendedor.get(dadosPessoais).getTelefone());
+                System.out.println("5 - " +vendedor.get(dadosPessoais).getCPF());
+                System.out.println("6 - " +vendedor.get(dadosPessoais).getCidade());
+                System.out.println("7 - " +vendedor.get(dadosPessoais).getEstado());
+                System.out.println("8 - " +vendedor.get(dadosPessoais).getPais());
+                System.out.println("9 - " +vendedor.get(dadosPessoais).getEndereco());
+                System.out.println("10 - " +vendedor.get(dadosPessoais).getDataCadastro());
+                System.out.println("11 - " +vendedor.get(dadosPessoais).getLogin());
+                System.out.println("12 - " +vendedor.get(dadosPessoais).getSenha());
+                System.out.println("12 - " +vendedor.get(dadosPessoais));
+                
+                
+               
+                System.out.println("Digite seu novo nome ");
+                String novo = scan.next();
+                vendedor.get(dadosPessoais).setNome(novo);
+                    
+                System.out.println("1 - " +vendedor.get(dadosPessoais).getNome());
+                
             }
 
         

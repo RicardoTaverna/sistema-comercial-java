@@ -15,7 +15,7 @@ public class Vendedor {
     private String nome, sobrenome, datanascimento, telefone, CPF, cidade, estado, pais, endereco, dataCadastro, login, senha, papel;
     
     
-    public Vendedor(String nome, String sobrenome, String datanascimento, String telefone, String CPF, String cidade, String estatado, String pais, String endereco, String dataCadastro, String login, String senha, String papel, ArrayList<Vendedor> vendedor) {
+    public Vendedor(String nome, String sobrenome, String datanascimento, String telefone, String CPF, String cidade, String estado, String pais, String endereco, String dataCadastro, String login, String senha, String papel, ArrayList<Vendedor> vendedor) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.datanascimento = datanascimento;
@@ -30,6 +30,7 @@ public class Vendedor {
         this.senha = senha;
         this.papel = papel;
         vendedor.add(this);
+        
     }
     
     
