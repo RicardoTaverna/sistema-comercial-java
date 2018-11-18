@@ -6,9 +6,12 @@
 package sistemacomercial;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import static sistemacomercial.SistemaComercial.vendedor;
+import static sistemacomercial.SistemaComercial.cliente;
 
 
 /**
@@ -18,7 +21,7 @@ import static sistemacomercial.SistemaComercial.vendedor;
 public class Sessao{
     String inpLogin, inpSenha, validaPapel;
     boolean validador = false;
-    int inpMenuVendedor, inpDigito, inpNumeroVendedor;
+    int inpMenuVendedor, inpDigito, inpNumeroVendedor,inpNumeroCliente;
     String inpOpcao;
     
     public void login(){
@@ -91,6 +94,8 @@ public class Sessao{
                     listarVendedor();
                     break;
                 case 6:
+                    listarCliente();
+                    break;
                 case 7:
                 case 8:
                 case 9:
@@ -190,15 +195,208 @@ public class Sessao{
             }
         }
     }
-    
+     public void listarCliente() {
+        Scanner scan = new Scanner(System.in);
+        
+        if ("vendedorAdm".equals(validaPapel)){
+            System.out.println("|---- Menu Vendedor ----|");
+            System.out.println("|---- Escolha uma opcao ----|");
+            for(int i = 0; i < cliente.size(); i = i + 1){          
+                System.out.println("|---- " + i + ") " + cliente.get(i).getNome() + " " +  cliente.get(i).getSobrenome() + " - " +  cliente.get(i).getCPF());
+            }
+            System.out.println("|---- Escolha o numero do Cliente ----|");
+            inpNumeroCliente = scan.nextInt();
+            System.out.println("|---- D para DELETAR, ou E para EDITAR ----|");
+            inpOpcao =  scan.next();
+
+            if("D".equals(inpOpcao)|| "d".equals(inpOpcao)){
+                deletarCliente(inpNumeroCliente);  
+                System.out.println("1 - Retornar para o Menu");
+                System.out.println("2 - Olhar novamente a lista de vendedores");
+                System.out.println("3 - Finalizar");
+                inpDigito = scan.nextInt();
+                switch (inpDigito){
+                
+                    case 1:
+                        newSessao();
+                        break;
+                    case 2:
+                        listarCliente();
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        System.out.println("Opcao invalida finalizando Programa");
+                        break;                             
+                }
+                }else if("E".equals(inpOpcao) || "e".equals(inpOpcao)){                  
+                    editarCliente(inpNumeroCliente);
+                    System.out.println("1 - Retornar para o Menu");
+                    System.out.println("2 - Olhar novamente a lista de vendedores");
+                    System.out.println("3 - Finalizar");
+                    inpDigito = scan.nextInt();
+                    switch (inpDigito){
+
+                        case 1:
+                            newSessao();
+                            break;
+                        case 2:
+                            listarCliente();
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            System.out.println("Opcao invalida finalizando Programa");
+                            break;                             
+                    }
+                }else{
+                    System.out.println("Digite uma opção valida");
+                    listarCliente();
+                }
+            
+                
+        }else{
+            int auxiliar = 0;
+            for(int i = 0; i < cliente.size(); i = i + 1){          
+                System.out.println("|---- " + i + ") " + cliente.get(i).getNome() + " " +  cliente.get(i).getSobrenome() + " - " +  cliente.get(i).getCPF());
+                auxiliar = i;
+            }
+            System.out.println("|---- Digite 1 para editar seus dados \n|---- Ou digite 2 para sair");
+            inpDigito = scan.nextInt();
+            while(inpDigito != 2 && inpDigito != 1){
+                System.out.println("|---- Digite 1 para editar seus dados \n |---- Ou digite 2 para sair");
+                inpDigito = scan.nextInt();
+            }
+            if(inpDigito == 1){
+                editarCliente(auxiliar);
+            }
+        }
+    }
     public void cadastraVendedor() {
+ 
         
     }
-    
+    public void deletarCliente(int i) {
+        cliente.remove(i);
+    }
     public void deletarVendedor(int i) {
         vendedor.remove(i);
     }
-    
+public void editarCliente(int i) {
+        Scanner scan = new Scanner(System.in);
+        int inpOpcaoEdicao;
+        String novo;
+        int numero;
+        //passar como parametro a posição do vendedor a ser editado
+        //fake limpa tela
+        for (int count = 0; count < 50; ++count) System.out.println();
+        //
+        System.out.println("|---- Menu Editar Cliente ----|");
+        System.out.println("|---- Escolha o numero da opção a ser editada ----|");
+        System.out.println("|---- 1 - " +cliente.get(i).getNome());
+        System.out.println("|---- 2 - " +cliente.get(i).getSobrenome());
+        System.out.println("|---- 3 - " +cliente.get(i).getDatanascimento());
+        System.out.println("|---- 4 - " +cliente.get(i).getTelefone());
+        System.out.println("|---- 5 - " +cliente.get(i).getCPF());
+        System.out.println("|---- 6 - " +cliente.get(i).getCidade());
+        System.out.println("|---- 7 - " +cliente.get(i).getEstado());
+        System.out.println("|---- 8 - " +cliente.get(i).getPais());
+        System.out.println("|---- 9 - " +cliente.get(i).getEndereco());
+        System.out.println("|---- 10 - " +cliente.get(i).getDataCadastro());
+        System.out.println("|---- 11 - " +cliente.get(i).getNumero());
+
+        inpOpcaoEdicao = scan.nextInt();
+        switch(inpOpcaoEdicao){
+            case 1:
+                System.out.println("|---- Menu Cliente ----|");
+                System.out.println("|---- Digite o novo NOME ----|");
+                System.out.print("|---- ");
+                novo = scan.next();
+                cliente.get(i).setNome(novo);
+                System.out.println("NOME alteradado para: " +cliente.get(i).getNome());
+                break;
+            case 2:
+                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Digite o novo SOBRENOME ----|");
+                System.out.print("|---- ");
+                novo = scan.next();
+                cliente.get(i).setSobrenome(novo);
+                System.out.println("SOBRENOME alteradado para: " +cliente.get(i).getSobrenome());
+                break;
+            case 3:
+                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Digite a nova DATA DE NASCIMENTO ----|");
+                System.out.print("|---- ");
+                novo = scan.next();
+                cliente.get(i).setDatanascimento(novo);
+                System.out.println("DATA DE NASCIMENTO alteradado para: " +cliente.get(i).getDatanascimento());
+                break;
+            case 4:
+                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Digite o novo TELEFONE ----|");
+                System.out.print("|---- ");
+                novo = scan.next();
+                cliente.get(i).setTelefone(novo);
+                System.out.println("TELEFONE alteradado para: " +cliente.get(i).getTelefone());
+                break;
+            case 5:
+                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Digite o novo CPF ----|");
+                System.out.print("|---- ");
+                novo = scan.next();
+                cliente.get(i).setCPF(novo);
+                System.out.println("CPF alteradado para: " +cliente.get(i).getCPF());
+                break;
+            case 6:
+                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Digite a nova CIDADE ----|");
+                System.out.print("|---- ");
+                novo = scan.next();
+                cliente.get(i).setCidade(novo);
+                System.out.println("CIDADE alteradado para: " +cliente.get(i).getCidade());
+                break;
+            case 7:
+                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Digite o novo ESTADO ----|");
+                System.out.print("|---- ");
+                novo = scan.next();
+                cliente.get(i).setEstado(novo);
+                System.out.println("ESTADO alteradado para: " +cliente.get(i).getEstado());
+                break;
+            case 8:
+                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Digite o novo PAIS ----|");
+                System.out.print("|---- ");
+                novo = scan.next();
+                cliente.get(i).setPais(novo);
+                System.out.println("PAIS alteradado para: " +cliente.get(i).getPais());
+                break;
+            case 9:
+                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Digite o novo ENDEREÇO ----|");
+                System.out.print("|---- ");
+                novo = scan.next();
+                cliente.get(i).setEndereco(novo);
+                System.out.println("ENDEREÇO alteradado para: " +cliente.get(i).getEndereco());
+                break;
+            case 10:
+                System.out.println("A data de cadastro não pode ser alterada, contate o Administador");
+                editarCliente(i);
+                break;
+            case 11:
+                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Digite o novo numero ----|");
+                System.out.print("|---- ");
+                numero = scan.nextInt();
+                cliente.get(i).setNumero(numero);
+                System.out.println("Numero alteradado para: " +cliente.get(i).getNumero());
+                break;
+
+            default:
+                System.out.println("Numero inexistente");
+                editarCliente(i);
+        }
+    } 
     public void editarVendedor(int i) {
         Scanner scan = new Scanner(System.in);
         int inpOpcaoEdicao;
@@ -237,7 +435,7 @@ public class Sessao{
                 System.out.print("|---- ");
                 novo = scan.next();
                 vendedor.get(i).setSobrenome(novo);
-                System.out.println("SOBRENOME alteradado para: " +vendedor.get(i).getNome());
+                System.out.println("SOBRENOME alteradado para: " +vendedor.get(i).getSobrenome());
                 break;
             case 3:
                 System.out.println("|---- Menu Vendedor ----|");
@@ -245,7 +443,7 @@ public class Sessao{
                 System.out.print("|---- ");
                 novo = scan.next();
                 vendedor.get(i).setDatanascimento(novo);
-                System.out.println("DATA DE NASCIMENTO alteradado para: " +vendedor.get(i).getNome());
+                System.out.println("DATA DE NASCIMENTO alteradado para: " +vendedor.get(i).getDatanascimento());
                 break;
             case 4:
                 System.out.println("|---- Menu Vendedor ----|");
@@ -253,7 +451,7 @@ public class Sessao{
                 System.out.print("|---- ");
                 novo = scan.next();
                 vendedor.get(i).setTelefone(novo);
-                System.out.println("TELEFONE alteradado para: " +vendedor.get(i).getNome());
+                System.out.println("TELEFONE alteradado para: " +vendedor.get(i).getTelefone());
                 break;
             case 5:
                 System.out.println("|---- Menu Vendedor ----|");
@@ -261,7 +459,7 @@ public class Sessao{
                 System.out.print("|---- ");
                 novo = scan.next();
                 vendedor.get(i).setCPF(novo);
-                System.out.println("CPF alteradado para: " +vendedor.get(i).getNome());
+                System.out.println("CPF alteradado para: " +vendedor.get(i).getCPF());
                 break;
             case 6:
                 System.out.println("|---- Menu Vendedor ----|");
@@ -269,7 +467,7 @@ public class Sessao{
                 System.out.print("|---- ");
                 novo = scan.next();
                 vendedor.get(i).setCidade(novo);
-                System.out.println("CIDADE alteradado para: " +vendedor.get(i).getNome());
+                System.out.println("CIDADE alteradado para: " +vendedor.get(i).getCidade());
                 break;
             case 7:
                 System.out.println("|---- Menu Vendedor ----|");
@@ -277,7 +475,7 @@ public class Sessao{
                 System.out.print("|---- ");
                 novo = scan.next();
                 vendedor.get(i).setEstado(novo);
-                System.out.println("ESTADO alteradado para: " +vendedor.get(i).getNome());
+                System.out.println("ESTADO alteradado para: " +vendedor.get(i).getEstado());
                 break;
             case 8:
                 System.out.println("|---- Menu Vendedor ----|");
@@ -285,7 +483,7 @@ public class Sessao{
                 System.out.print("|---- ");
                 novo = scan.next();
                 vendedor.get(i).setPais(novo);
-                System.out.println("PAIS alteradado para: " +vendedor.get(i).getNome());
+                System.out.println("PAIS alteradado para: " +vendedor.get(i).getPais());
                 break;
             case 9:
                 System.out.println("|---- Menu Vendedor ----|");
@@ -293,7 +491,7 @@ public class Sessao{
                 System.out.print("|---- ");
                 novo = scan.next();
                 vendedor.get(i).setEndereco(novo);
-                System.out.println("ENDEREÇO alteradado para: " +vendedor.get(i).getNome());
+                System.out.println("ENDEREÇO alteradado para: " +vendedor.get(i).getEndereco());
                 break;
             case 10:
                 System.out.println("A data de cadastro não pode ser alterada, contate o Administador");
@@ -309,7 +507,7 @@ public class Sessao{
                 System.out.print("|---- ");
                 novo = scan.next();
                 vendedor.get(i).setSenha(novo);
-                System.out.println("SENHA alteradado para: " +vendedor.get(i).getNome());
+                System.out.println("SENHA alteradado para: " +vendedor.get(i).getSenha());
                 break;
             default:
                 System.out.println("Numero inexistente");

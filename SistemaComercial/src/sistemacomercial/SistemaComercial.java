@@ -21,15 +21,17 @@ public class SistemaComercial {
      * @param args the command line arguments
      */
     static ArrayList<Vendedor> vendedor = new ArrayList<>();
+    static ArrayList<Cliente> cliente = new ArrayList<>();
     
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
         // TODO code application logic here        
         
         
         Vendedor Vend1 = new Vendedor("Ricardo", "Taverna", "23/11/1992", "(41)999911111", "08544666906", "Curitiba", "PR", "Brasil", "Rua qualquer coisa numero 159", "01/11/2018", "ricardo.taverna", "rt@1992", "vendedor", vendedor);
-        Vendedor Vend2 = new Vendedor("Ygor", "Alves", "20/07/98", "(41)999992222", "67215343987", "Curitiba", "PR", "Brasil", "Rua qualquer se foe ae 69", "14/11/2018", "ygor.alves", "ya@1998", "vendedorAdm", vendedor);
- 
-         
+        Vendedor Vend2 = new Vendedor("Ygor", "Alves", "20/07/98", "(41)999992222", "67215343987", "Curitiba", "PR", "Brasil", "Rua qualquer  69", "14/11/2018", "ygor.alves", "ya@1998", "vendedorAdm", vendedor);
+        Cliente Clien1 = new Cliente("Lukas", "Martins", "20/07/1997","(41)999995423","45512167987","Curitiba","PR", "Brasil", "Rua qualquer  ", "14/08/2018",70, cliente);
+        Cliente Clien2 = new Cliente("Maria", "Martins", "20/07/1997","(41)999995423","45512167987","Curitiba","PR", "Brasil", "Rua qualquer  ", "14/08/2018",70, cliente);
+
         //Carregar aruivo com os dados das classes
 //        FileInputStream inputFile = new FileInputStream("vendedor.ser");
 //        ObjectInputStream in = new ObjectInputStream(inputFile);

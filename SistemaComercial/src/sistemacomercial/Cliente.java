@@ -5,27 +5,32 @@
  */
 package sistemacomercial;
 
+import java.util.ArrayList;
+
+
+
 /**
  *
  * @author taver
  */
 public class Cliente {
-    String nome, sobrenome, datanascimento, telefone, CPF, cidade, estatado, pais, endereco, dataCadastro;
+    String nome, sobrenome, datanascimento, telefone, CPF, cidade, estado, pais, endereco, dataCadastro;
     int numero;
     
 
-    public Cliente(String nome, String sobrenome, String datanascimento, String telefone, String CPF, String cidade, String estatado, String pais, String endereco, String dataCadastro, int numero) {
+    public Cliente(String nome, String sobrenome, String datanascimento, String telefone, String CPF, String cidade, String estado, String pais, String endereco, String dataCadastro, int numero,ArrayList<Cliente> cliente) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.datanascimento = datanascimento;
         this.telefone = telefone;
         this.CPF = CPF;
         this.cidade = cidade;
-        this.estatado = estatado;
+        this.estado = estado;
         this.pais = pais;
         this.endereco = endereco;
         this.dataCadastro = dataCadastro;
         this.numero = numero;
+        cliente.add(this);
     }
 
     public String getNome() {
@@ -76,12 +81,12 @@ public class Cliente {
         this.cidade = cidade;
     }
 
-    public String getEstatado() {
-        return estatado;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setEstatado(String estatado) {
-        this.estatado = estatado;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getPais() {
