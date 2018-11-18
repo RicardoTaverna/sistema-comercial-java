@@ -19,7 +19,7 @@ public class Sessao{
     String inpLogin, inpSenha, validaPapel;
     boolean validador = false;
     int inpMenuVendedor, inpDigito, inpNumeroVendedor;
-    char inpOpcao;
+    String inpOpcao;
     
     public void login(){
         Scanner scan = new Scanner(System.in);
@@ -117,16 +117,59 @@ public class Sessao{
             System.out.println("|---- Escolha o numero do vendedor ----|");
             inpNumeroVendedor = scan.nextInt();
             System.out.println("|---- D para DELETAR, ou E para EDITAR ----|");
-            inpOpcao = (char) scan.nextInt();
-            if("D".equals(inpOpcao)){
+            inpOpcao =  scan.next();
+            if("D".equals(inpOpcao)|| "d".equals(inpOpcao)){
+                if (vendedor.get(inpNumeroVendedor).getLogin().equals(inpLogin)){
+                    System.out.println("Impossivel deletar o proprio usuario");                   
+                    listarVendedor();
+                    
+                }
+            }
+            if("D".equals(inpOpcao)|| "d".equals(inpOpcao)){
                 deletarVendedor(inpNumeroVendedor);  
-                if("E".equals(inpOpcao)){
+                System.out.println("1 - Retornar para o Menu");
+                System.out.println("2 - Olhar novamente a lista de vendedores");
+                System.out.println("3 - Finalizar");
+                inpDigito = scan.nextInt();
+                switch (inpDigito){
+                
+                    case 1:
+                        newSessao();
+                        break;
+                    case 2:
+                        listarVendedor();
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        System.out.println("Opcao invalida finalizando Programa");
+                        break;                             
+                }
+                }else if("E".equals(inpOpcao) || "e".equals(inpOpcao)){                  
                     editarVendedor(inpNumeroVendedor);
+                    System.out.println("1 - Retornar para o Menu");
+                    System.out.println("2 - Olhar novamente a lista de vendedores");
+                    System.out.println("3 - Finalizar");
+                    inpDigito = scan.nextInt();
+                    switch (inpDigito){
+
+                        case 1:
+                            newSessao();
+                            break;
+                        case 2:
+                            listarVendedor();
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            System.out.println("Opcao invalida finalizando Programa");
+                            break;                             
+                    }
                 }else{
                     System.out.println("Digite uma opção valida");
                     listarVendedor();
                 }
-            }
+            
                 
         }else{
             int dadosPessoais = 0;
@@ -136,7 +179,7 @@ public class Sessao{
                 }  
                 System.out.println("|---- " + i + ") " + vendedor.get(i).getNome() + " " +  vendedor.get(i).getSobrenome() + " - " +  vendedor.get(i).getCPF());
             }
-            System.out.println("|---- Digite 1 para editar seus dados \n |---- Ou digite 2 para sair");
+            System.out.println("|---- Digite 1 para editar seus dados \n|---- Ou digite 2 para sair");
             inpDigito = scan.nextInt();
             while(inpDigito != 2 && inpDigito != 1){
                 System.out.println("|---- Digite 1 para editar seus dados \n |---- Ou digite 2 para sair");
