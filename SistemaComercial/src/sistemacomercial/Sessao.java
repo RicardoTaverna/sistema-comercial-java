@@ -6,7 +6,9 @@
 package sistemacomercial;
 
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -352,7 +354,62 @@ public class Sessao{
         }
     }
     public void cadastraVendedor() {
- 
+        Scanner scan = new Scanner(System.in);
+        String tempnome, tempsobrenome, tempdatanascimento, temptelefone, tempCPF, tempcidade, tempestado, temppais, tempendereco, tempdataCadastro, templogin, tempsenha, temppapel;
+        int inptOpcao;
+        System.out.println("|---- Menu Cadastrar Vendedor ----|");
+        System.out.print("Digite o NOME: ");
+        tempnome = scan.next();
+        System.out.print("Digite o SOBRENOME: ");
+        tempsobrenome = scan.next();
+        System.out.print("Digite a DATA DE NASCIMENTO(dd/mm/aaaa): ");
+        tempdatanascimento = scan.next();
+        System.out.print("Digite o TELEFONE: ");
+        temptelefone = scan.next();
+        System.out.print("Digite o CPF: ");
+        tempCPF = scan.next();
+        System.out.print("Digite a CIDADE: ");
+        tempcidade = scan.next();
+        System.out.print("Digite o ESTADO: ");
+        tempestado = scan.next();
+        System.out.print("Digite o PAIS: ");
+        temppais = scan.next();
+        System.out.print("Digite o ENDEREÇO: ");
+        tempendereco = scan.next();        
+        System.out.print("Digite o PAPEL(comum-administrador): ");
+        temppapel = scan.next();
+        
+        //pegar a data de cadastro automatico do sistema através da biblioteca java.utils.Date
+        Date data = new Date();
+        tempdataCadastro = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(data);
+        
+        //login criado automatico utilizando 1 nome . sobrenome
+        templogin = (tempnome + "." + tempsobrenome);
+        
+        //senha criada automaticamente atravez da 1 letra do nome 1 letra do sobrenome @ ano de nascimento
+        tempsenha = (tempnome.substring(0, 1) + tempsobrenome.substring(0, 1) + "@" + tempdatanascimento.substring(6, 10));
+                
+        Vendedor tempVendedor = new Vendedor(tempnome, tempsobrenome, tempdatanascimento, temptelefone, tempCPF, tempcidade, tempestado, temppais, tempendereco, tempdataCadastro, templogin, tempsenha, temppapel, vendedor);
+        
+        System.out.println("|---- Cadastrador o vendedor " + tempVendedor.getNome());
+        System.out.println("|---- Seu login: " + tempVendedor.getLogin());
+        System.out.println("|---- Sua senha: " + tempVendedor.getSenha());
+        System.out.println("|---- Data de Cadastro: " + tempVendedor.getDataCadastro());
+        System.out.println("|---- Escolha uma opção abaixo ---|");
+        System.out.println("|---- 1) Concluir");
+        System.out.println("|---- 2) Adicionar outro vendedor");
+        System.out.print("|---- Opcao: ");
+        inptOpcao = scan.nextInt();
+        switch(inptOpcao){
+            case 1:
+                
+                break;
+            case 2:
+                cadastraVendedor();
+                break;
+            default:
+                System.out.println("Opção invalida, retornando ao menu principal");
+        }
         
     }
     public void deletarCliente(int i) {
