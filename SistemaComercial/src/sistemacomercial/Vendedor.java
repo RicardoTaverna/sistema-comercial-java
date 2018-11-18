@@ -31,8 +31,7 @@ public class Vendedor {
         this.papel = papel;
         vendedor.add(this);
         
-    }
-    
+    }    
     
     public String getNome() {
         return nome;

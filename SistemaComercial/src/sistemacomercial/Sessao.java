@@ -18,7 +18,8 @@ import static sistemacomercial.SistemaComercial.vendedor;
 public class Sessao{
     String inpLogin, inpSenha, validaPapel;
     boolean validador = false;
-    int inpMenuVendedor, inpDigito;
+    int inpMenuVendedor, inpDigito, inpNumeroVendedor;
+    char inpOpcao;
     
     public void login(){
         Scanner scan = new Scanner(System.in);
@@ -50,7 +51,7 @@ public class Sessao{
         }
        
     }
- public static void alterar() {
+    /*public static void alterar() {
         String nome = JOptionPane.showInputDialog("Digite o Nome do Aluno que deseja Alterar");
         String novo = JOptionPane.showInputDialog("Digite o Novo Nome");
         for (int i = 0; i < vendedor.size(); i++) {
@@ -58,7 +59,7 @@ public class Sessao{
                 vendedor.get(i).setNome(novo);
             }
         }
-    }
+    }*/
     public void newSessao(){
         if (validador == true) {
             //fake limpa tela
@@ -81,6 +82,8 @@ public class Sessao{
             inpMenuVendedor = scan.nextInt();
             switch(inpMenuVendedor){
                 case 1:
+                    cadastraVendedor();
+                    break;
                 case 2:
                 case 3:
                 case 4:
@@ -106,36 +109,54 @@ public class Sessao{
         Scanner scan = new Scanner(System.in);
         
         if ("vendedorAdm".equals(validaPapel)){
+            System.out.println("|---- Menu Vendedor ----|");
+            System.out.println("|---- Escolha uma opcao ----|");
             for(int i = 0; i < vendedor.size(); i = i + 1){          
-                System.out.println( i + "- " +vendedor.get(i).getNome() + " " +  vendedor.get(i).getSobrenome());   
-
+                System.out.println("|---- " + i + ") " + vendedor.get(i).getNome() + " " +  vendedor.get(i).getSobrenome() + " - " +  vendedor.get(i).getCPF());
             }
-            System.out.println("Digite o Numero do Vendedor ");
-            inpDigito = scan.nextInt();
-            if(inpDigito == 1){
-                //switch
+            System.out.println("|---- Escolha o numero do vendedor ----|");
+            inpNumeroVendedor = scan.nextInt();
+            System.out.println("|---- D para DELETAR, ou E para EDITAR ----|");
+            inpOpcao = (char) scan.nextInt();
+            if("D".equals(inpOpcao)){
+                deletarVendedor(inpNumeroVendedor);  
+                if("E".equals(inpOpcao)){
+                    editarVendedor(inpNumeroVendedor);
+                }else{
+                    System.out.println("Digite uma opção valida");
+                    listarVendedor();
+                }
+            }
                 
-            }
         }else{
             int dadosPessoais = 0;
             for(int i = 0; i<vendedor.size(); i ++){
                 if (vendedor.get(i).getLogin().equals(inpLogin)){
                     dadosPessoais = i;
                 }  
-                System.out.println(vendedor.get(i).getNome() + " " +  vendedor.get(dadosPessoais).getSobrenome());
+                System.out.println("|---- " + i + ") " + vendedor.get(i).getNome() + " " +  vendedor.get(i).getSobrenome() + " - " +  vendedor.get(i).getCPF());
             }
-            System.out.println("Digite 1 para editar seus dados \n Ou digite 2 para sair");
+            System.out.println("|---- Digite 1 para editar seus dados \n |---- Ou digite 2 para sair");
             inpDigito = scan.nextInt();
             while(inpDigito != 2 && inpDigito != 1){
-                System.out.println("Digite 1 para editar seus dados \n Ou digite 2 para sair");
+                System.out.println("|---- Digite 1 para editar seus dados \n |---- Ou digite 2 para sair");
                 inpDigito = scan.nextInt();
             }
             if(inpDigito == 1){
-                editarProprioVendedor(dadosPessoais);
+                editarVendedor(dadosPessoais);
             }
         }
     }
-    public void editarProprioVendedor(int i) {
+    
+    public void cadastraVendedor() {
+        
+    }
+    
+    public void deletarVendedor(int i) {
+        vendedor.remove(i);
+    }
+    
+    public void editarVendedor(int i) {
         Scanner scan = new Scanner(System.in);
         int inpOpcaoEdicao;
         String novo;
@@ -143,7 +164,7 @@ public class Sessao{
         //fake limpa tela
         for (int count = 0; count < 50; ++count) System.out.println();
         //
-        System.out.println("|---- Menu Vendedor ----|");
+        System.out.println("|---- Menu Editar Vendedor ----|");
         System.out.println("|---- Escolha o numero da opção a ser editada ----|");
         System.out.println("|---- 1 - " +vendedor.get(i).getNome());
         System.out.println("|---- 2 - " +vendedor.get(i).getSobrenome());
@@ -233,11 +254,11 @@ public class Sessao{
                 break;
             case 10:
                 System.out.println("A data de cadastro não pode ser alterada, contate o Administador");
-                editarProprioVendedor(i);
+                editarVendedor(i);
                 break;
             case 11:
                 System.out.println("O login não pode ser alterado, contate o Administrador");
-                editarProprioVendedor(i);
+                editarVendedor(i);
                 break;
             case 12:
                 System.out.println("|---- Menu Vendedor ----|");
@@ -249,7 +270,7 @@ public class Sessao{
                 break;
             default:
                 System.out.println("Numero inexistente");
-                editarProprioVendedor(i);
+                editarVendedor(i);
         }
     } 
      
