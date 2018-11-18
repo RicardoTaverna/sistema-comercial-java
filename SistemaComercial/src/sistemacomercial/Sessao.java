@@ -12,6 +12,8 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 import static sistemacomercial.SistemaComercial.vendedor;
 import static sistemacomercial.SistemaComercial.cliente;
+import static sistemacomercial.SistemaComercial.fornecedor;
+
 
 
 /**
@@ -21,7 +23,7 @@ import static sistemacomercial.SistemaComercial.cliente;
 public class Sessao{
     String inpLogin, inpSenha, validaPapel;
     boolean validador = false;
-    int inpMenuVendedor, inpDigito, inpNumeroVendedor,inpNumeroCliente;
+    int inpMenuVendedor, inpDigito, inpNumeroVendedor,inpNumeroCliente,inpNumeroFornecedor;
     String inpOpcao;
     
     public void login(){
@@ -195,7 +197,7 @@ public class Sessao{
             }
         }
     }
-     public void listarCliente() {
+    public void listarCliente() {
         Scanner scan = new Scanner(System.in);
         
         if ("vendedorAdm".equals(validaPapel)){
@@ -212,7 +214,7 @@ public class Sessao{
             if("D".equals(inpOpcao)|| "d".equals(inpOpcao)){
                 deletarCliente(inpNumeroCliente);  
                 System.out.println("1 - Retornar para o Menu");
-                System.out.println("2 - Olhar novamente a lista de vendedores");
+                System.out.println("2 - Olhar novamente a lista de Clientes");
                 System.out.println("3 - Finalizar");
                 inpDigito = scan.nextInt();
                 switch (inpDigito){
@@ -232,7 +234,7 @@ public class Sessao{
                 }else if("E".equals(inpOpcao) || "e".equals(inpOpcao)){                  
                     editarCliente(inpNumeroCliente);
                     System.out.println("1 - Retornar para o Menu");
-                    System.out.println("2 - Olhar novamente a lista de vendedores");
+                    System.out.println("2 - Olhar novamente a lista de Clientes");
                     System.out.println("3 - Finalizar");
                     inpDigito = scan.nextInt();
                     switch (inpDigito){
@@ -272,6 +274,83 @@ public class Sessao{
             }
         }
     }
+    public void listarFornecedor() {
+        Scanner scan = new Scanner(System.in);
+        
+        if ("vendedorAdm".equals(validaPapel)){
+            System.out.println("|---- Menu Vendedor ----|");
+            System.out.println("|---- Escolha uma opcao ----|");
+            for(int i = 0; i < fornecedor.size(); i = i + 1){          
+                System.out.println("|---- " + i + ") " + fornecedor.get(i).getNomeFantasia() + " " +  fornecedor.get(i).getRazaoSocial() + " - " +  fornecedor.get(i).getCNPJ());
+            }
+            System.out.println("|---- Escolha o numero do Fornecedor ----|");
+            inpNumeroFornecedor = scan.nextInt();
+            System.out.println("|---- D para DELETAR, ou E para EDITAR ----|");
+            inpOpcao =  scan.next();
+
+            if("D".equals(inpOpcao)|| "d".equals(inpOpcao)){
+                deletarCliente(inpNumeroFornecedor);  
+                System.out.println("1 - Retornar para o Menu");
+                System.out.println("2 - Olhar novamente a lista de Fornecedor");
+                System.out.println("3 - Finalizar");
+                inpDigito = scan.nextInt();
+                switch (inpDigito){
+                
+                    case 1:
+                        newSessao();
+                        break;
+                    case 2:
+                        listarFornecedor();
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        System.out.println("Opcao invalida finalizando Programa");
+                        break;                             
+                }
+                }else if("E".equals(inpOpcao) || "e".equals(inpOpcao)){                  
+                    editarCliente(inpNumeroFornecedor);
+                    System.out.println("1 - Retornar para o Menu");
+                    System.out.println("2 - Olhar novamente a lista de Fornecedor");
+                    System.out.println("3 - Finalizar");
+                    inpDigito = scan.nextInt();
+                    switch (inpDigito){
+
+                        case 1:
+                            newSessao();
+                            break;
+                        case 2:
+                            listarFornecedor();
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            System.out.println("Opcao invalida finalizando Programa");
+                            break;                             
+                    }
+                }else{
+                    System.out.println("Digite uma opção valida");
+                    listarFornecedor();
+                }
+            
+                
+        }else{
+            int auxiliar = 0;
+            for(int i = 0; i < fornecedor.size(); i = i + 1){          
+                System.out.println("|---- " + i + ") " + fornecedor.get(i).getNomeFantasia() + " " +  fornecedor.get(i).getRazaoSocial() + " - " +  fornecedor.get(i).getCNPJ());
+                auxiliar = i;
+            }
+            System.out.println("|---- Digite 1 para editar seus dados \n|---- Ou digite 2 para sair");
+            inpDigito = scan.nextInt();
+            while(inpDigito != 2 && inpDigito != 1){
+                System.out.println("|---- Digite 1 para editar seus dados \n |---- Ou digite 2 para sair");
+                inpDigito = scan.nextInt();
+            }
+            if(inpDigito == 1){
+                editarFornecedor(auxiliar);
+            }
+        }
+    }
     public void cadastraVendedor() {
  
         
@@ -282,12 +361,12 @@ public class Sessao{
     public void deletarVendedor(int i) {
         vendedor.remove(i);
     }
-public void editarCliente(int i) {
+    public void editarCliente(int i) {
         Scanner scan = new Scanner(System.in);
         int inpOpcaoEdicao;
         String novo;
         int numero;
-        //passar como parametro a posição do vendedor a ser editado
+        //passar como parametro a posição do cliente a ser editado
         //fake limpa tela
         for (int count = 0; count < 50; ++count) System.out.println();
         //
@@ -397,6 +476,121 @@ public void editarCliente(int i) {
                 editarCliente(i);
         }
     } 
+    public void editarFornecedor(int i) {
+        Scanner scan = new Scanner(System.in);
+        int inpOpcaoEdicao;
+        String novo;
+        int numero;
+        //passar como parametro a posição do cliente a ser editado
+        //fake limpa tela
+        for (int count = 0; count < 50; ++count) System.out.println();
+        //
+        System.out.println("|---- Menu Editar Fornecedor ----|");
+        System.out.println("|---- Escolha o numero da opção a ser editada ----|");
+        System.out.println("|---- 1 - " +fornecedor.get(i).getNomeFantasia());
+        System.out.println("|---- 2 - " +fornecedor.get(i).getNomeFantasia());
+        System.out.println("|---- 3 - " +fornecedor.get(i).getCNPJ());
+        System.out.println("|---- 4 - " +fornecedor.get(i).getEmail());
+        System.out.println("|---- 5 - " +fornecedor.get(i).getTelefone());
+        System.out.println("|---- 6 - " +fornecedor.get(i).getCidade());
+        System.out.println("|---- 7 - " +fornecedor.get(i).getEstado());
+        System.out.println("|---- 8 - " +fornecedor.get(i).getPais());
+        System.out.println("|---- 9 - " +fornecedor.get(i).getNumero());
+        System.out.println("|---- 10 - "+fornecedor.get(i).getDataCadastro());
+        
+
+        inpOpcaoEdicao = scan.nextInt();
+        switch(inpOpcaoEdicao){
+            case 1:
+                System.out.println("|---- Menu Fornecedor ----|");
+                System.out.println("|---- Digite o novo NOME Fantasia ----|");
+                System.out.print("|---- ");
+                novo = scan.next();
+                fornecedor.get(i).setNomeFantasia(novo);
+                System.out.println("NOME Fantasia alteradado para: " +fornecedor.get(i).getNomeFantasia());
+                break;
+            case 2:
+                System.out.println("|---- Menu Fornecedor ----|");
+                System.out.println("|---- Digite o novo Razao Social ----|");
+                System.out.print("|---- ");
+                novo = scan.next();
+                fornecedor.get(i).setRazaoSocial(novo);
+                System.out.println("Razao Social  alteradado para: " +fornecedor.get(i).getRazaoSocial());
+                break;
+            case 3:
+                System.out.println("|---- Menu Fornecedor ----|");
+                System.out.println("|---- Digite o novo CNPJ ----|");
+                System.out.print("|---- ");
+                novo = scan.next();
+                fornecedor.get(i).setCNPJ(novo);
+                System.out.println("CNPJ alteradado para: " +fornecedor.get(i).getCNPJ());
+                break;
+            case 4:
+                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Digite o novo TELEFONE ----|");
+                System.out.print("|---- ");
+                novo = scan.next();
+                cliente.get(i).setTelefone(novo);
+                System.out.println("TELEFONE alteradado para: " +cliente.get(i).getTelefone());
+                break;
+            case 5:
+                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Digite o novo CPF ----|");
+                System.out.print("|---- ");
+                novo = scan.next();
+                cliente.get(i).setCPF(novo);
+                System.out.println("CPF alteradado para: " +cliente.get(i).getCPF());
+                break;
+            case 6:
+                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Digite a nova CIDADE ----|");
+                System.out.print("|---- ");
+                novo = scan.next();
+                cliente.get(i).setCidade(novo);
+                System.out.println("CIDADE alteradado para: " +cliente.get(i).getCidade());
+                break;
+            case 7:
+                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Digite o novo ESTADO ----|");
+                System.out.print("|---- ");
+                novo = scan.next();
+                cliente.get(i).setEstado(novo);
+                System.out.println("ESTADO alteradado para: " +cliente.get(i).getEstado());
+                break;
+            case 8:
+                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Digite o novo PAIS ----|");
+                System.out.print("|---- ");
+                novo = scan.next();
+                cliente.get(i).setPais(novo);
+                System.out.println("PAIS alteradado para: " +cliente.get(i).getPais());
+                break;
+            case 9:
+                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Digite o novo ENDEREÇO ----|");
+                System.out.print("|---- ");
+                novo = scan.next();
+                cliente.get(i).setEndereco(novo);
+                System.out.println("ENDEREÇO alteradado para: " +cliente.get(i).getEndereco());
+                break;
+            case 10:
+                System.out.println("A data de cadastro não pode ser alterada, contate o Administador");
+                editarCliente(i);
+                break;
+            case 11:
+                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Digite o novo numero ----|");
+                System.out.print("|---- ");
+                numero = scan.nextInt();
+                cliente.get(i).setNumero(numero);
+                System.out.println("Numero alteradado para: " +cliente.get(i).getNumero());
+                break;
+
+            default:
+                System.out.println("Numero inexistente");
+                editarCliente(i);
+        }
+    }
     public void editarVendedor(int i) {
         Scanner scan = new Scanner(System.in);
         int inpOpcaoEdicao;

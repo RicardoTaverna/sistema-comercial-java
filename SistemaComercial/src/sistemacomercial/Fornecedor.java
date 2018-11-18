@@ -5,6 +5,8 @@
  */
 package sistemacomercial;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author taver
@@ -12,7 +14,7 @@ package sistemacomercial;
 public class Fornecedor {
     String nomeFantasia, razaoSocial, CNPJ, email, telefone, cidade, estado, pais, endereco, numero, dataCadastro;
 
-    public Fornecedor(String nomeFantasia, String razaoSocial, String CNPJ, String email, String telefone, String cidade, String estado, String pais, String endereco, String numero, String dataCadastro) {
+    public Fornecedor(String nomeFantasia, String razaoSocial, String CNPJ, String email, String telefone, String cidade, String estado, String pais, String endereco, String numero, String dataCadastro,ArrayList<Fornecedor> fornecedor) {
         this.nomeFantasia = nomeFantasia;
         this.razaoSocial = razaoSocial;
         this.CNPJ = CNPJ;
@@ -24,6 +26,7 @@ public class Fornecedor {
         this.endereco = endereco;
         this.numero = numero;
         this.dataCadastro = dataCadastro;
+        fornecedor.add(this);
     }
 
     public String getNomeFantasia() {
