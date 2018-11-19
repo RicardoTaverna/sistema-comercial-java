@@ -364,7 +364,7 @@ public class Sessao{
             System.out.println("|---- Menu Produto ----|");
             System.out.println("|---- Escolha uma opcao ----|");
             for(int i = 0; i < produto.size(); i = i + 1){          
-                System.out.println("|---- " + i + ") " + produto.get(i).getNome() + " " +  produto.get(i).getDescricao() + " - " +  produto.get(i).getCPF());
+                System.out.println("|---- " + i + ") " + produto.get(i).getNome() + " " +  produto.get(i).getDescricao());
             }
             System.out.println("|---- Escolha o numero do Cliente ----|");
             inpNumeroCliente = scan.nextInt();
@@ -531,6 +531,73 @@ public class Sessao{
                
                 
         Cliente tempCliente = new Cliente(tempnome, tempsobrenome, tempdatanascimento, temptelefone, tempCPF, tempcidade, tempestado, temppais, tempendereco,tempnumero, tempdataCadastro, cliente);
+        
+        System.out.println("|---- Cadastrado o Cliente " + tempCliente.getNome());
+        System.out.println("|---- Data de Cadastro: " + tempCliente.getDataCadastro());
+        System.out.println("|---- Escolha uma opção abaixo ---|");
+        System.out.println("|---- 1) Concluir");
+        System.out.println("|---- 2) Adicionar outro vendedor");
+        System.out.print("|---- Opcao: ");
+        inptOpcao = scan.nextInt();
+        switch(inptOpcao){
+            case 1:
+                
+                break;
+            case 2:
+                cadastraCliente();
+                break;
+            default:
+                System.out.println("Opção invalida, retornando ao menu principal");
+                newSessao();
+        }
+        
+    }
+    
+    public void cadastraProduto() {
+        Fornecedor tempFornecedor;
+        
+        Scanner scan = new Scanner(System.in);
+        String tempnome, tempsobrenome, tempdatanascimento, temptelefone, tempCPF, tempcidade, tempestado, temppais, tempendereco,tempnumero, tempdataCadastro;
+        int inptOpcao;
+        System.out.println("|---- Menu Cadastrar Produto ----|");
+        System.out.print("Digite o NOME: ");
+        tempnome = scan.next();
+        System.out.print("Digite o SOBRENOME: ");
+        tempsobrenome = scan.next();
+        System.out.print("Digite a DATA DE NASCIMENTO(dd/mm/aaaa): ");
+        tempdatanascimento = scan.next();
+        System.out.print("Digite o FORNECEDOR: ");
+        
+        int posicaoFornecedor;
+        
+        for(int i = 0; i < fornecedor.size(); i = i + 1){          
+            System.out.println("|---- " + i + ") " + fornecedor.get(i).getNomeFantasia() + " " +  fornecedor.get(i).getRazaoSocial() + " - " +  fornecedor.get(i).getCNPJ());
+        }
+        System.out.println("|---- Selecione a posição do forncedor ----|");        
+        posicaoFornecedor = scan.nextInt();
+        tempFornecedor = fornecedor.get(posicaoFornecedor);
+        
+        temptelefone = scan.next();
+        System.out.print("Digite o CPF: ");
+        tempCPF = scan.next();
+        System.out.print("Digite a CIDADE: ");
+        tempcidade = scan.next();
+        System.out.print("Digite o ESTADO: ");
+        tempestado = scan.next();
+        System.out.print("Digite o PAIS: ");
+        temppais = scan.next();
+        System.out.print("Digite o ENDEREÇO: ");
+        tempendereco = scan.next();    
+        System.out.print("Digite o Numero: ");
+        tempnumero = scan.next();  
+ 
+        
+        //pegar a data de cadastro automatico do sistema através da biblioteca java.utils.Date
+        Date data = new Date();
+        tempdataCadastro = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(data);
+               
+                
+        Produto tempProduto = new Produto(nome, descricao, quantidade, preco, tempFornecedor, produto);
         
         System.out.println("|---- Cadastrado o Cliente " + tempCliente.getNome());
         System.out.println("|---- Data de Cadastro: " + tempCliente.getDataCadastro());
@@ -998,13 +1065,21 @@ public class Sessao{
                  System.out.println("|---- Cliente Validado");
                  i = vendedor.size() + 1;
              }else{
-                 System.out.println("Cliente não encontrado, cadastre como novo vendedor");
+                 System.out.println("Cliente não encontrado, cadastre como novo cliente");
              }
         }
         for(int i = 0; i < produto.size(); i = i + 1){  
-            tempProduto = produto.get(i);        
+            tempProduto = produto.get(i);  
+            if(produtoVenda.equals(tempProduto.getNome())){
+                System.out.println("|---- Produto Validao");
+            }else{
+                 System.out.println("Produto não encontrado, cadastre como novo produto");
+             }
             System.out.println("|---- Valor: " + (tempProduto.getPreco() * produtoQtdeVenda));
-            System.out.println("");
+            //Arruma estoque da quantidade de produtos
+            int qntde = tempProduto.getQuantidade();
+            qntde = qntde - produtoQtdeVenda;
+            tempProduto.setQuantidade(qntde);
         }
         
         //Venda vendaS = new Venda();
