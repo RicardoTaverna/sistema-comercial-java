@@ -14,11 +14,11 @@ import java.util.ArrayList;
  * @author taver
  */
 public class Cliente {
-    String nome, sobrenome, datanascimento, telefone, CPF, cidade, estado, pais, endereco, dataCadastro;
-    int numero;
+    String nome, sobrenome, datanascimento, telefone, CPF, cidade, estado, pais, endereco,numero, dataCadastro;
+
     
 
-    public Cliente(String nome, String sobrenome, String datanascimento, String telefone, String CPF, String cidade, String estado, String pais, String endereco, String dataCadastro, int numero,ArrayList<Cliente> cliente) {
+    public Cliente(String nome, String sobrenome, String datanascimento, String telefone, String CPF, String cidade, String estado, String pais, String endereco, String dataCadastro, String numero,ArrayList<Cliente> cliente) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.datanascimento = datanascimento;
@@ -113,11 +113,11 @@ public class Cliente {
         this.dataCadastro = dataCadastro;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
     

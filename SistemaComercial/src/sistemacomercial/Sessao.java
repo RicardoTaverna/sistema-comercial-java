@@ -291,7 +291,7 @@ public class Sessao{
             inpOpcao =  scan.next();
 
             if("D".equals(inpOpcao)|| "d".equals(inpOpcao)){
-                deletarCliente(inpNumeroFornecedor);  
+                deletarFornecedor(inpNumeroFornecedor);  
                 System.out.println("1 - Retornar para o Menu");
                 System.out.println("2 - Olhar novamente a lista de Fornecedor");
                 System.out.println("3 - Finalizar");
@@ -311,7 +311,7 @@ public class Sessao{
                         break;                             
                 }
                 }else if("E".equals(inpOpcao) || "e".equals(inpOpcao)){                  
-                    editarCliente(inpNumeroFornecedor);
+                    editarFornecedor(inpNumeroFornecedor);
                     System.out.println("1 - Retornar para o Menu");
                     System.out.println("2 - Olhar novamente a lista de Fornecedor");
                     System.out.println("3 - Finalizar");
@@ -376,8 +376,12 @@ public class Sessao{
         temppais = scan.next();
         System.out.print("Digite o ENDEREÇO: ");
         tempendereco = scan.next();        
-        System.out.print("Digite o PAPEL(comum-administrador): ");
-        temppapel = scan.next();
+        if ("vendedorAdm".equals(validaPapel)){
+            System.out.print("Digite o PAPEL(vendedor-administrador): ");
+            temppapel = scan.next();
+        }else{
+            temppapel ="vendedor";
+        }
         
         //pegar a data de cadastro automatico do sistema através da biblioteca java.utils.Date
         Date data = new Date();
@@ -391,7 +395,7 @@ public class Sessao{
                 
         Vendedor tempVendedor = new Vendedor(tempnome, tempsobrenome, tempdatanascimento, temptelefone, tempCPF, tempcidade, tempestado, temppais, tempendereco, tempdataCadastro, templogin, tempsenha, temppapel, vendedor);
         
-        System.out.println("|---- Cadastrador o vendedor " + tempVendedor.getNome());
+        System.out.println("|---- Cadastrado o vendedor " + tempVendedor.getNome());
         System.out.println("|---- Seu login: " + tempVendedor.getLogin());
         System.out.println("|---- Sua senha: " + tempVendedor.getSenha());
         System.out.println("|---- Data de Cadastro: " + tempVendedor.getDataCadastro());
@@ -409,6 +413,115 @@ public class Sessao{
                 break;
             default:
                 System.out.println("Opção invalida, retornando ao menu principal");
+                newSessao();
+        }
+        
+    }
+    public void cadastraCliente() {
+        Scanner scan = new Scanner(System.in);
+        String tempnome, tempsobrenome, tempdatanascimento, temptelefone, tempCPF, tempcidade, tempestado, temppais, tempendereco,tempnumero, tempdataCadastro;
+        int inptOpcao;
+        System.out.println("|---- Menu Cadastrar Cliente ----|");
+        System.out.print("Digite o NOME: ");
+        tempnome = scan.next();
+        System.out.print("Digite o SOBRENOME: ");
+        tempsobrenome = scan.next();
+        System.out.print("Digite a DATA DE NASCIMENTO(dd/mm/aaaa): ");
+        tempdatanascimento = scan.next();
+        System.out.print("Digite o TELEFONE: ");
+        temptelefone = scan.next();
+        System.out.print("Digite o CPF: ");
+        tempCPF = scan.next();
+        System.out.print("Digite a CIDADE: ");
+        tempcidade = scan.next();
+        System.out.print("Digite o ESTADO: ");
+        tempestado = scan.next();
+        System.out.print("Digite o PAIS: ");
+        temppais = scan.next();
+        System.out.print("Digite o ENDEREÇO: ");
+        tempendereco = scan.next();    
+        System.out.print("Digite o Numero: ");
+        tempnumero = scan.next();  
+ 
+        
+        //pegar a data de cadastro automatico do sistema através da biblioteca java.utils.Date
+        Date data = new Date();
+        tempdataCadastro = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(data);
+               
+                
+        Cliente tempCliente = new Cliente(tempnome, tempsobrenome, tempdatanascimento, temptelefone, tempCPF, tempcidade, tempestado, temppais, tempendereco,tempnumero, tempdataCadastro, cliente);
+        
+        System.out.println("|---- Cadastrado o Cliente " + tempCliente.getNome());
+        System.out.println("|---- Data de Cadastro: " + tempCliente.getDataCadastro());
+        System.out.println("|---- Escolha uma opção abaixo ---|");
+        System.out.println("|---- 1) Concluir");
+        System.out.println("|---- 2) Adicionar outro vendedor");
+        System.out.print("|---- Opcao: ");
+        inptOpcao = scan.nextInt();
+        switch(inptOpcao){
+            case 1:
+                
+                break;
+            case 2:
+                cadastraCliente();
+                break;
+            default:
+                System.out.println("Opção invalida, retornando ao menu principal");
+                newSessao();
+        }
+        
+    }
+    public void cadastraFornecedor() {
+        Scanner scan = new Scanner(System.in);
+        String tempnome, temprazaosocial, tempemail, temptelefone, tempCNPJ, tempcidade, tempestado, temppais, tempendereco,tempnumero, tempdataCadastro;
+        int inptOpcao;
+        System.out.println("|---- Menu Cadastrar Fornecedor ----|");
+        System.out.print("Digite o NOME Fantasia: ");
+        tempnome = scan.next();
+        System.out.print("Digite a Razao Social: ");
+        temprazaosocial = scan.next();
+        System.out.print("Digite o E-mail): ");
+        tempemail = scan.next();
+        System.out.print("Digite o TELEFONE: ");
+        temptelefone = scan.next();
+        System.out.print("Digite o CNPJ: ");
+        tempCNPJ = scan.next();
+        System.out.print("Digite a CIDADE: ");
+        tempcidade = scan.next();
+        System.out.print("Digite o ESTADO: ");
+        tempestado = scan.next();
+        System.out.print("Digite o PAIS: ");
+        temppais = scan.next();
+        System.out.print("Digite o ENDEREÇO: ");
+        tempendereco = scan.next();    
+        System.out.print("Digite o Numero: ");
+        tempnumero = scan.next();  
+ 
+        
+        //pegar a data de cadastro automatico do sistema através da biblioteca java.utils.Date
+        Date data = new Date();
+        tempdataCadastro = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(data);
+               
+                
+        Fornecedor tempFornecedor = new Fornecedor(tempnome, temprazaosocial, tempemail, temptelefone, tempCNPJ, tempcidade, tempestado, temppais, tempendereco,tempnumero, tempdataCadastro, fornecedor);
+        
+        System.out.println("|---- Cadastrado o Fornecedor" + tempFornecedor.getNomeFantasia());
+        System.out.println("|---- Data de Cadastro: " + tempFornecedor.getDataCadastro());
+        System.out.println("|---- Escolha uma opção abaixo ---|");
+        System.out.println("|---- 1) Concluir");
+        System.out.println("|---- 2) Adicionar outro vendedor");
+        System.out.print("|---- Opcao: ");
+        inptOpcao = scan.nextInt();
+        switch(inptOpcao){
+            case 1:
+                
+                break;
+            case 2:
+                cadastraFornecedor();
+                break;
+            default:
+                System.out.println("Opção invalida, retornando ao menu principal");
+                newSessao();
         }
         
     }
@@ -416,6 +529,9 @@ public class Sessao{
         cliente.remove(i);
     }
     public void deletarVendedor(int i) {
+        vendedor.remove(i);
+    }
+    public void deletarFornecedor(int i) {
         vendedor.remove(i);
     }
     public void editarCliente(int i) {
@@ -523,8 +639,8 @@ public class Sessao{
                 System.out.println("|---- Menu cliente ----|");
                 System.out.println("|---- Digite o novo numero ----|");
                 System.out.print("|---- ");
-                numero = scan.nextInt();
-                cliente.get(i).setNumero(numero);
+                novo = scan.next();
+                cliente.get(i).setNumero(novo);
                 System.out.println("Numero alteradado para: " +cliente.get(i).getNumero());
                 break;
 
@@ -537,23 +653,24 @@ public class Sessao{
         Scanner scan = new Scanner(System.in);
         int inpOpcaoEdicao;
         String novo;
-        int numero;
-        //passar como parametro a posição do cliente a ser editado
+        
+        //passar como parametro a posição do fornecedor a ser editado
         //fake limpa tela
         for (int count = 0; count < 50; ++count) System.out.println();
         //
         System.out.println("|---- Menu Editar Fornecedor ----|");
         System.out.println("|---- Escolha o numero da opção a ser editada ----|");
         System.out.println("|---- 1 - " +fornecedor.get(i).getNomeFantasia());
-        System.out.println("|---- 2 - " +fornecedor.get(i).getNomeFantasia());
+        System.out.println("|---- 2 - " +fornecedor.get(i).getRazaoSocial());
         System.out.println("|---- 3 - " +fornecedor.get(i).getCNPJ());
         System.out.println("|---- 4 - " +fornecedor.get(i).getEmail());
         System.out.println("|---- 5 - " +fornecedor.get(i).getTelefone());
         System.out.println("|---- 6 - " +fornecedor.get(i).getCidade());
         System.out.println("|---- 7 - " +fornecedor.get(i).getEstado());
         System.out.println("|---- 8 - " +fornecedor.get(i).getPais());
-        System.out.println("|---- 9 - " +fornecedor.get(i).getNumero());
-        System.out.println("|---- 10 - "+fornecedor.get(i).getDataCadastro());
+        System.out.println("|---- 9 - " +fornecedor.get(i).getEndereco());
+        System.out.println("|---- 10 - " +fornecedor.get(i).getNumero());
+        System.out.println("|---- 11 - "+fornecedor.get(i).getDataCadastro());
         
 
         inpOpcaoEdicao = scan.nextInt();
@@ -583,69 +700,70 @@ public class Sessao{
                 System.out.println("CNPJ alteradado para: " +fornecedor.get(i).getCNPJ());
                 break;
             case 4:
-                System.out.println("|---- Menu cliente ----|");
-                System.out.println("|---- Digite o novo TELEFONE ----|");
+                System.out.println("|---- Menu Fornecedor ----|");
+                System.out.println("|---- Digite o novo E-mail ----|");
                 System.out.print("|---- ");
                 novo = scan.next();
-                cliente.get(i).setTelefone(novo);
-                System.out.println("TELEFONE alteradado para: " +cliente.get(i).getTelefone());
+                fornecedor.get(i).setEmail(novo);
+                System.out.println("Email alteradado para: " +fornecedor.get(i).getEmail());
                 break;
             case 5:
-                System.out.println("|---- Menu cliente ----|");
-                System.out.println("|---- Digite o novo CPF ----|");
+                System.out.println("|---- Menu Fornecedor ----|");
+                System.out.println("|---- Digite o novo Telefone ----|");
                 System.out.print("|---- ");
                 novo = scan.next();
-                cliente.get(i).setCPF(novo);
-                System.out.println("CPF alteradado para: " +cliente.get(i).getCPF());
+                fornecedor.get(i).setTelefone(novo);
+                System.out.println("Telefone alteradado para: " +fornecedor.get(i).getTelefone());
                 break;
             case 6:
-                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Menu Fornecedor ----|");
                 System.out.println("|---- Digite a nova CIDADE ----|");
                 System.out.print("|---- ");
                 novo = scan.next();
-                cliente.get(i).setCidade(novo);
-                System.out.println("CIDADE alteradado para: " +cliente.get(i).getCidade());
+                fornecedor.get(i).setCidade(novo);
+                System.out.println("CIDADE alteradado para: " +fornecedor.get(i).getCidade());
                 break;
             case 7:
-                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Menu Fornecedor ----|");
                 System.out.println("|---- Digite o novo ESTADO ----|");
                 System.out.print("|---- ");
                 novo = scan.next();
-                cliente.get(i).setEstado(novo);
-                System.out.println("ESTADO alteradado para: " +cliente.get(i).getEstado());
+                fornecedor.get(i).setEstado(novo);
+                System.out.println("ESTADO alteradado para: " +fornecedor.get(i).getEstado());
                 break;
             case 8:
-                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Menu fornecedor ----|");
                 System.out.println("|---- Digite o novo PAIS ----|");
                 System.out.print("|---- ");
                 novo = scan.next();
-                cliente.get(i).setPais(novo);
-                System.out.println("PAIS alteradado para: " +cliente.get(i).getPais());
+                fornecedor.get(i).setPais(novo);
+                System.out.println("PAIS alteradado para: " +fornecedor.get(i).getPais());
                 break;
             case 9:
-                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Menu fornecedor ----|");
                 System.out.println("|---- Digite o novo ENDEREÇO ----|");
                 System.out.print("|---- ");
                 novo = scan.next();
-                cliente.get(i).setEndereco(novo);
-                System.out.println("ENDEREÇO alteradado para: " +cliente.get(i).getEndereco());
+                fornecedor.get(i).setEndereco(novo);
+                System.out.println("ENDEREÇO alteradado para: " +fornecedor.get(i).getEndereco());
                 break;
             case 10:
-                System.out.println("A data de cadastro não pode ser alterada, contate o Administador");
-                editarCliente(i);
-                break;
-            case 11:
-                System.out.println("|---- Menu cliente ----|");
+                System.out.println("|---- Menu Fornecedor ----|");
                 System.out.println("|---- Digite o novo numero ----|");
                 System.out.print("|---- ");
-                numero = scan.nextInt();
-                cliente.get(i).setNumero(numero);
-                System.out.println("Numero alteradado para: " +cliente.get(i).getNumero());
+                novo = scan.next();
+                fornecedor.get(i).setNumero(novo);
+                System.out.println("Numero alteradado para: " +fornecedor.get(i).getNumero());
+                break;
+                
+            case 11:
+                System.out.println("A data de cadastro não pode ser alterada, contate o Administador");
+                editarFornecedor(i);
                 break;
 
             default:
                 System.out.println("Numero inexistente");
-                editarCliente(i);
+                editarFornecedor(i);
         }
     }
     public void editarVendedor(int i) {
