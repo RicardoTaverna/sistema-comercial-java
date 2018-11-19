@@ -23,10 +23,10 @@ import static sistemacomercial.SistemaComercial.fornecedor;
  * @author taverna, yago, milico
  */
 public class Sessao{
-    String inpLogin, inpSenha, validaPapel;
-    boolean validador = false;
-    int inpMenuVendedor, inpDigito, inpNumeroVendedor,inpNumeroCliente,inpNumeroFornecedor;
-    String inpOpcao;
+   private String inpLogin, inpSenha, validaPapel;
+   private boolean validador = false;
+   private int inpMenuVendedor, inpDigito, inpNumeroVendedor,inpNumeroCliente,inpNumeroFornecedor;
+   private String inpOpcao;
     
     public void login(){
         Scanner scan = new Scanner(System.in);
@@ -58,15 +58,7 @@ public class Sessao{
         }
        
     }
-    /*public static void alterar() {
-        String nome = JOptionPane.showInputDialog("Digite o Nome do Aluno que deseja Alterar");
-        String novo = JOptionPane.showInputDialog("Digite o Novo Nome");
-        for (int i = 0; i < vendedor.size(); i++) {
-            if (vendedor.get(i).getNome().equals(nome)) {
-                vendedor.get(i).setNome(novo);
-            }
-        }
-    }*/
+
     public void newSessao(){
         if (validador == true) {
             //fake limpa tela
@@ -92,8 +84,14 @@ public class Sessao{
                     cadastraVendedor();
                     break;
                 case 2:
+                    cadastraCliente();
+                    break;
                 case 3:
+                    cadastraFornecedor();
+                    break;
                 case 4:
+                    cadastraVendedor();
+                    break;
                 case 5:
                     listarVendedor();
                     break;
@@ -101,8 +99,13 @@ public class Sessao{
                     listarCliente();
                     break;
                 case 7:
+                    listarFornecedor();
+                    break;
                 case 8:
+                    //listarProdutos();
+                    break;
                 case 9:
+
                 case 10:
                 case 11:
                     

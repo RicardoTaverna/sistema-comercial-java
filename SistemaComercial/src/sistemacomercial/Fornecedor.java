@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author taver
  */
 public class Fornecedor {
-    String nomeFantasia, razaoSocial, CNPJ, email, telefone, cidade, estado, pais, endereco, numero, dataCadastro;
+   private String nomeFantasia, razaoSocial, CNPJ, email, telefone, cidade, estado, pais, endereco, numero, dataCadastro;
 
     public Fornecedor(String nomeFantasia, String razaoSocial, String CNPJ, String email, String telefone, String cidade, String estado, String pais, String endereco, String numero, String dataCadastro,ArrayList<Fornecedor> fornecedor) {
         this.nomeFantasia = nomeFantasia;

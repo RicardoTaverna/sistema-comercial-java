@@ -5,15 +5,18 @@
  */
 package sistemacomercial;
 
+import java.util.ArrayList;
+import static sistemacomercial.SistemaComercial.fornecedor;
+
 /**
  *
  * @author taver
  */
 public class Produto {
-    String descrição;
-    int quantidade;
-    float preco;
-    Fornecedor fornecedor;
+   private String descrição;
+   private int quantidade;
+   private  float preco;
+   private Fornecedor fornecedor;
 
     public Produto(String descrição, int quantidade, float preco, Fornecedor fornecedor) {
         this.descrição = descrição;
@@ -21,6 +24,13 @@ public class Produto {
         this.preco = preco;
         this.fornecedor = fornecedor;
     }
+
+
+
+
+
+
+
 
     public String getDescrição() {
         return descrição;

@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author taver
  */
 public class Cliente {
-    String nome, sobrenome, datanascimento, telefone, CPF, cidade, estado, pais, endereco,numero, dataCadastro;
+   private String nome, sobrenome, datanascimento, telefone, CPF, cidade, estado, pais, endereco,numero, dataCadastro;
 
     
 
