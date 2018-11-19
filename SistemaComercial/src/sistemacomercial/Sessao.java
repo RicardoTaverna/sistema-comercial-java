@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import static sistemacomercial.SistemaComercial.vendedor;
 import static sistemacomercial.SistemaComercial.cliente;
 import static sistemacomercial.SistemaComercial.fornecedor;
+import static sistemacomercial.SistemaComercial.produto;
 
 
 
@@ -888,7 +889,49 @@ public class Sessao{
     }
     
     public void registrarVenda(){
-    
+        Scanner scan = new Scanner(System.in);
+        String vendedorVenda, clienteVenda, produtoVenda;
+        int produtoQtdeVenda;
+        Vendedor tempVendedor;
+        Cliente tempCliente;
+        Produto tempProduto;
+        
+        System.out.println("|---- Menu Registrar Venda ----|");
+        System.out.print("|---- Vendedor: ");
+        vendedorVenda = scan.next();
+        System.out.print("|---- Cliente: ");
+        clienteVenda = scan.next();
+        System.out.print("|---- Produto: ");
+        produtoVenda = scan.next();
+        System.out.print("|---- Quantidade: ");
+        produtoQtdeVenda = scan.nextInt();
+        
+        for(int i = 0; i < vendedor.size(); i = i + 1){  
+            tempVendedor = vendedor.get(i);        
+             if (vendedorVenda.equals(tempVendedor.getNome())){
+                 System.out.println("|---- Vendedor Validado");
+                 i = vendedor.size() + 1;
+             }else{
+                 System.out.println("Vendedor não encontrado, cadastre como novo vendedor");
+             }
+        }
+        for(int i = 0; i < cliente.size(); i = i + 1){  
+            tempCliente = cliente.get(i);        
+             if (vendedorVenda.equals(tempCliente.getNome())){
+                 System.out.println("|---- Cliente Validado");
+                 i = vendedor.size() + 1;
+             }else{
+                 System.out.println("Cliente não encontrado, cadastre como novo vendedor");
+             }
+        }
+        for(int i = 0; i < produto.size(); i = i + 1){  
+            tempProduto = produto.get(i);        
+            System.out.println("|---- Valor: " + (tempProduto.getPreco() * produtoQtdeVenda));
+            System.out.println("");
+        }
+        
+        Venda vendaS = new Venda();
+        
     }
      
 }
