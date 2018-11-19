@@ -12,13 +12,15 @@ import java.util.ArrayList;
  * @author taver
  */
 public class Produto {
-   private String descrição;
+   private String nome;
+   private String descricao;
    private int quantidade;
    private  double preco;
    private Fornecedor fornecedor;
 
-    public Produto(String descrição, int quantidade, double preco, Fornecedor fornecedor, ArrayList<Produto> produto) {
-        this.descrição = descrição;
+    public Produto(String nome,String descricao, int quantidade, double preco, Fornecedor fornecedor, ArrayList<Produto> produto) {
+        this.nome = nome;
+        this.descricao = descricao;
         this.quantidade = quantidade;
         this.preco = preco;
         this.fornecedor = fornecedor;
@@ -29,15 +31,21 @@ public class Produto {
 
 
 
-
-
-
-    public String getDescrição() {
-        return descrição;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDescrição(String descrição) {
-        this.descrição = descrição;
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public int getQuantidade() {

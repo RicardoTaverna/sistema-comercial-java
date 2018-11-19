@@ -357,6 +357,83 @@ public class Sessao{
             }
         }
     }
+    public void listarProduto() {
+        Scanner scan = new Scanner(System.in);
+        
+        if ("vendedorAdm".equals(validaPapel)){
+            System.out.println("|---- Menu Produto ----|");
+            System.out.println("|---- Escolha uma opcao ----|");
+            for(int i = 0; i < produto.size(); i = i + 1){          
+                System.out.println("|---- " + i + ") " + produto.get(i).getNome() + " " +  produto.get(i).getDescricao() + " - " +  produto.get(i).getCPF());
+            }
+            System.out.println("|---- Escolha o numero do Cliente ----|");
+            inpNumeroCliente = scan.nextInt();
+            System.out.println("|---- D para DELETAR, ou E para EDITAR ----|");
+            inpOpcao =  scan.next();
+
+            if("D".equals(inpOpcao)|| "d".equals(inpOpcao)){
+                deletarCliente(inpNumeroCliente);  
+                System.out.println("1 - Retornar para o Menu");
+                System.out.println("2 - Olhar novamente a lista de Clientes");
+                System.out.println("3 - Finalizar");
+                inpDigito = scan.nextInt();
+                switch (inpDigito){
+                
+                    case 1:
+                        newSessao();
+                        break;
+                    case 2:
+                        listarCliente();
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        System.out.println("Opcao invalida finalizando Programa");
+                        break;                             
+                }
+                }else if("E".equals(inpOpcao) || "e".equals(inpOpcao)){                  
+                    editarCliente(inpNumeroCliente);
+                    System.out.println("1 - Retornar para o Menu");
+                    System.out.println("2 - Olhar novamente a lista de Clientes");
+                    System.out.println("3 - Finalizar");
+                    inpDigito = scan.nextInt();
+                    switch (inpDigito){
+
+                        case 1:
+                            newSessao();
+                            break;
+                        case 2:
+                            listarCliente();
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            System.out.println("Opcao invalida finalizando Programa");
+                            break;                             
+                    }
+                }else{
+                    System.out.println("Digite uma opção valida");
+                    listarCliente();
+                }
+            
+                
+        }else{
+            int auxiliar = 0;
+            for(int i = 0; i < cliente.size(); i = i + 1){          
+                System.out.println("|---- " + i + ") " + cliente.get(i).getNome() + " " +  cliente.get(i).getSobrenome() + " - " +  cliente.get(i).getCPF());
+                auxiliar = i;
+            }
+            System.out.println("|---- Digite 1 para editar seus dados \n|---- Ou digite 2 para sair");
+            inpDigito = scan.nextInt();
+            while(inpDigito != 2 && inpDigito != 1){
+                System.out.println("|---- Digite 1 para editar seus dados \n |---- Ou digite 2 para sair");
+                inpDigito = scan.nextInt();
+            }
+            if(inpDigito == 1){
+                editarCliente(auxiliar);
+            }
+        }
+    }
     public void cadastraVendedor() {
         Scanner scan = new Scanner(System.in);
         String tempnome, tempsobrenome, tempdatanascimento, temptelefone, tempCPF, tempcidade, tempestado, temppais, tempendereco, tempdataCadastro, templogin, tempsenha, temppapel;
@@ -930,7 +1007,7 @@ public class Sessao{
             System.out.println("");
         }
         
-        Venda vendaS = new Venda();
+        //Venda vendaS = new Venda();
         
     }
      
