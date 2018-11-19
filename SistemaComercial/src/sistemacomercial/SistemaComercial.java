@@ -31,7 +31,7 @@ public class SistemaComercial {
         Vendedor Vend2 = new Vendedor("Ygor", "Alves", "20/07/98", "(41)999992222", "67215343987", "Curitiba", "PR", "Brasil", "Rua qualquer  69", "14/11/2018", "ygor.alves", "ya@1998", "vendedorAdm", vendedor);
         Cliente Clien1 = new Cliente("Lukas", "Martins", "20/07/1997","(41)999995423","45512167987","Curitiba","PR", "Brasil", "Rua qualquer  ", "14/08/2018",70, cliente);
         Cliente Clien2 = new Cliente("Maria", "Martins", "20/07/1997","(41)999995423","45512167987","Curitiba","PR", "Brasil", "Rua qualquer  ", "14/08/2018",70, cliente);
-        Fornecedor fornecedor1 = new Fornecedor("Fábio e Isabel Transportes ME", "Fábio e Isabel", "04.039.351/0001-67", "faleconosco@fabioeisabeltelasme.com.br", "(43) 2668-0036", "Londrina", "PR", "Brasil", "Rua Antônio Carlos de Oliveira Leme", "358", "10/11/20118");
+        //Fornecedor fornecedor1 = new Fornecedor("Fábio e Isabel Transportes ME", "Fábio e Isabel", "04.039.351/0001-67", "faleconosco@fabioeisabeltelasme.com.br", "(43) 2668-0036", "Londrina", "PR", "Brasil", "Rua Antônio Carlos de Oliveira Leme", "358", "10/11/20118");
         //Carregar aruivo com os dados das classes
 //        FileInputStream inputFile = new FileInputStream("vendedor.ser");
 //        ObjectInputStream in = new ObjectInputStream(inputFile);
