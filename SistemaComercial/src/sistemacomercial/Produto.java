@@ -15,10 +15,10 @@ import static sistemacomercial.SistemaComercial.fornecedor;
 public class Produto {
    private String descrição;
    private int quantidade;
-   private  float preco;
+   private  double preco;
    private Fornecedor fornecedor;
 
-    public Produto(String descrição, int quantidade, float preco, Fornecedor fornecedor, ArrayList<Produto> produto) {
+    public Produto(String descrição, int quantidade, double preco, Fornecedor fornecedor, ArrayList<Produto> produto) {
         this.descrição = descrição;
         this.quantidade = quantidade;
         this.preco = preco;
@@ -49,11 +49,11 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    public float getPreco() {
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(float preco) {
+    public void setPreco(double preco) {
         this.preco = preco;
     }
 
