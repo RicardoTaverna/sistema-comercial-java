@@ -105,7 +105,7 @@ public class Sessao{
                     //listarProdutos();
                     break;
                 case 9:
-
+                    registrarVenda();
                 case 10:
                 case 11:
                     
@@ -885,6 +885,10 @@ public class Sessao{
                 System.out.println("Numero inexistente");
                 editarVendedor(i);
         }
-    } 
+    }
+    
+    public void registrarVenda(){
+    
+    }
      
 }
