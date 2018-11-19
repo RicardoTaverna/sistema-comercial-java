@@ -18,11 +18,12 @@ public class Produto {
    private  float preco;
    private Fornecedor fornecedor;
 
-    public Produto(String descrição, int quantidade, float preco, Fornecedor fornecedor) {
+    public Produto(String descrição, int quantidade, float preco, Fornecedor fornecedor, ArrayList<Produto> produto) {
         this.descrição = descrição;
         this.quantidade = quantidade;
         this.preco = preco;
         this.fornecedor = fornecedor;
+        produto.add(this);
     }
 
 
