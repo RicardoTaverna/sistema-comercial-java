@@ -7,15 +7,13 @@ package sistemacomercial;
 
 
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
-import javax.swing.JOptionPane;
 import static sistemacomercial.SistemaComercial.vendedor;
 import static sistemacomercial.SistemaComercial.cliente;
 import static sistemacomercial.SistemaComercial.fornecedor;
 import static sistemacomercial.SistemaComercial.produto;
+import static sistemacomercial.SistemaComercial.venda;
 
 
 
@@ -107,6 +105,7 @@ public class Sessao{
                     break;
                 case 9:
                     registrarVenda();
+                    break;
                 case 10:
                 case 11:
                     
@@ -114,6 +113,7 @@ public class Sessao{
                 default:
                     System.out.println("Numero inexistente");
                     newSessao();
+                    
             }    
         }
     }
@@ -1108,7 +1108,7 @@ public class Sessao{
     public void registrarVenda(){
         Scanner scan = new Scanner(System.in);
         String vendedorVenda, clienteVenda, produtoVenda,achou = null;
-        int produtoQtdeVenda,validaProduto = 0;
+        int produtoQtdeVenda,validaProduto = 0,validaVendedor =0,validaCliente =0;
         Vendedor tempVendedor;
         Cliente tempCliente;
         Produto tempProduto;
@@ -1125,6 +1125,7 @@ public class Sessao{
              if (vendedorVenda.equals(tempVendedor.getNome())){
 
                  achou = "sim";
+                 validaVendedor =i;
                 i = vendedor.size() + 1;                
              }
         }
@@ -1145,6 +1146,7 @@ public class Sessao{
             tempCliente = cliente.get(i);        
              if (clienteVenda.equals(tempCliente.getNome())){
                  achou = "sim";
+                 validaCliente =i;
                 i = cliente.size() + 1;                
              }
         }
@@ -1189,15 +1191,18 @@ public class Sessao{
         int qntde = tempProduto.getQuantidade();
         qntde = qntde - produtoQtdeVenda;
         tempProduto.setQuantidade(qntde);
+        tempVendedor = vendedor.get(validaVendedor);
+        tempCliente = cliente.get(validaCliente);
+                                    
+        
         if(qntde == 0){
             deletarProduto(validaProduto);
             System.out.println("Produto acabou e foi removido");
+        }else{
+            System.out.println("Existem "+ qntde +" produtos no estoque");
         }
         
-
-
-        
-        //Venda vendaS = new Venda();
+        Venda tempvenda = new Venda(tempVendedor,tempCliente,tempProduto, venda);
         
     }
      

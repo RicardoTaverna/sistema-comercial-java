@@ -14,16 +14,14 @@ import java.util.ArrayList;
 public class Venda {
     private Cliente cliente;
     private Produto produto;    
-    private String tipoPagamento;
-    private double juros;
     private final Vendedor vendedor;
             
-    public Venda(String tipoPagamento, double juros, Vendedor vendedor, Cliente cliente, Produto produto, ArrayList<Venda> venda){
-        this.tipoPagamento = tipoPagamento;
-        this.juros = juros;
+    public Venda( Vendedor vendedor, Cliente cliente, Produto produto, ArrayList<Venda> venda){
+
         this.vendedor = vendedor;
-        this.produto = produto;
         this.cliente = cliente;
+        this.produto = produto;
+        
         venda.add(this);
     }
 }
