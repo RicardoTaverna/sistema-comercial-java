@@ -67,10 +67,16 @@ public class Produto {
     public Fornecedor getFornecedor() {
         return fornecedor;
     }
+    public String getFornecedornome() {
+        return fornecedor.getNomeFantasia();
+    }
+
 
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
     }
+
+
     
     
 }

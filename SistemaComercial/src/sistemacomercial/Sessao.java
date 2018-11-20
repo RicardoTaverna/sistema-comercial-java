@@ -26,7 +26,7 @@ import static sistemacomercial.SistemaComercial.produto;
 public class Sessao{
    private String inpLogin, inpSenha, validaPapel;
    private boolean validador = false;
-   private int inpMenuVendedor, inpDigito, inpNumeroVendedor,inpNumeroCliente,inpNumeroFornecedor;
+   private int inpMenuVendedor, inpDigito, inpNumeroVendedor,inpNumeroCliente,inpNumeroFornecedor,inpNumeroProduto;
    private String inpOpcao;
     
     public void login(){
@@ -103,7 +103,7 @@ public class Sessao{
                     listarFornecedor();
                     break;
                 case 8:
-                    //listarProdutos();
+                    listarProduto();
                     break;
                 case 9:
                     registrarVenda();
@@ -366,15 +366,15 @@ public class Sessao{
             for(int i = 0; i < produto.size(); i = i + 1){          
                 System.out.println("|---- " + i + ") " + produto.get(i).getNome() + " " +  produto.get(i).getDescricao());
             }
-            System.out.println("|---- Escolha o numero do Cliente ----|");
-            inpNumeroCliente = scan.nextInt();
+            System.out.println("|---- Escolha o numero do Produto ----|");
+            inpNumeroProduto = scan.nextInt();
             System.out.println("|---- D para DELETAR, ou E para EDITAR ----|");
             inpOpcao =  scan.next();
 
             if("D".equals(inpOpcao)|| "d".equals(inpOpcao)){
-                deletarCliente(inpNumeroCliente);  
+                deletarProduto(inpNumeroProduto);  
                 System.out.println("1 - Retornar para o Menu");
-                System.out.println("2 - Olhar novamente a lista de Clientes");
+                System.out.println("2 - Olhar novamente a lista de Produtos");
                 System.out.println("3 - Finalizar");
                 inpDigito = scan.nextInt();
                 switch (inpDigito){
@@ -383,18 +383,19 @@ public class Sessao{
                         newSessao();
                         break;
                     case 2:
-                        listarCliente();
+                        listarProduto();
                         break;
                     case 3:
                         break;
                     default:
-                        System.out.println("Opcao invalida finalizando Programa");
-                        break;                             
+                        System.out.println("Opcao invalida Voltar para o menu");
+                        newSessao();
+                                                     
                 }
                 }else if("E".equals(inpOpcao) || "e".equals(inpOpcao)){                  
-                    editarCliente(inpNumeroCliente);
+                    editarProduto(inpNumeroProduto);
                     System.out.println("1 - Retornar para o Menu");
-                    System.out.println("2 - Olhar novamente a lista de Clientes");
+                    System.out.println("2 - Olhar novamente a lista de Produto");
                     System.out.println("3 - Finalizar");
                     inpDigito = scan.nextInt();
                     switch (inpDigito){
@@ -403,35 +404,53 @@ public class Sessao{
                             newSessao();
                             break;
                         case 2:
-                            listarCliente();
+                            listarProduto();
                             break;
                         case 3:
                             break;
                         default:
-                            System.out.println("Opcao invalida finalizando Programa");
-                            break;                             
+                            System.out.println("Opcao invalida retornando ao Menu");
+                            newSessao();                            
                     }
                 }else{
                     System.out.println("Digite uma opção valida");
-                    listarCliente();
+                    listarProduto();
                 }
             
                 
         }else{
-            int auxiliar = 0;
-            for(int i = 0; i < cliente.size(); i = i + 1){          
-                System.out.println("|---- " + i + ") " + cliente.get(i).getNome() + " " +  cliente.get(i).getSobrenome() + " - " +  cliente.get(i).getCPF());
-                auxiliar = i;
+            System.out.println("|---- Menu Produto ----|");
+            System.out.println("|---- Escolha uma opcao ----|");
+            for(int i = 0; i < produto.size(); i = i + 1){          
+                System.out.println("|---- " + i + ") " + produto.get(i).getNome() + " " +  produto.get(i).getDescricao());
             }
-            System.out.println("|---- Digite 1 para editar seus dados \n|---- Ou digite 2 para sair");
-            inpDigito = scan.nextInt();
-            while(inpDigito != 2 && inpDigito != 1){
-                System.out.println("|---- Digite 1 para editar seus dados \n |---- Ou digite 2 para sair");
-                inpDigito = scan.nextInt();
-            }
-            if(inpDigito == 1){
-                editarCliente(auxiliar);
-            }
+            System.out.println("|---- Escolha o numero do Produto ----|");
+            inpNumeroProduto = scan.nextInt();
+            System.out.println("|---- E para EDITAR ou S para sair ----|");
+            inpOpcao =  scan.next();
+            if("E".equals(inpOpcao) || "e".equals(inpOpcao)){                  
+                    editarProduto(inpNumeroProduto);
+                    System.out.println("1 - Retornar para o Menu");
+                    System.out.println("2 - Olhar novamente a lista de Produto");
+                    System.out.println("3 - Finalizar");
+                    inpDigito = scan.nextInt();
+                    switch (inpDigito){
+
+                        case 1:
+                            newSessao();
+                            break;
+                        case 2:
+                            listarProduto();
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            System.out.println("Opcao invalida retornando ao Menu");
+                            newSessao();                            
+                    }
+                }else{
+                    newSessao();
+                }
         }
     }
     public void cadastraVendedor() {
@@ -551,8 +570,7 @@ public class Sessao{
                 newSessao();
         }
         
-    }
-    
+    }  
     public void cadastraProduto() {
         Fornecedor tempFornecedor;
         
@@ -654,6 +672,7 @@ public class Sessao{
         }
         
     }
+    
     public void deletarCliente(int i) {
         cliente.remove(i);
     }
@@ -661,8 +680,12 @@ public class Sessao{
         vendedor.remove(i);
     }
     public void deletarFornecedor(int i) {
-        vendedor.remove(i);
+        fornecedor.remove(i);
     }
+    public void deletarProduto(int i) {
+        produto.remove(i);
+    }
+    
     public void editarCliente(int i) {
         Scanner scan = new Scanner(System.in);
         int inpOpcaoEdicao;
@@ -1012,6 +1035,75 @@ public class Sessao{
                 editarVendedor(i);
         }
     }
+    public void editarProduto(int i) {
+        Scanner scan = new Scanner(System.in);
+        int inpOpcaoEdicao;
+        String novo;
+        int numero;
+        //passar como parametro a posição do cliente a ser editado
+        //fake limpa tela
+        for (int count = 0; count < 50; ++count) System.out.println();
+        //
+        System.out.println("|---- Menu Editar Produto ----|");
+        System.out.println("|---- Escolha o numero da opção a ser editada ----|");
+        System.out.println("|---- 1 - " +produto.get(i).getNome());
+        System.out.println("|---- 2 - " +produto.get(i).getDescricao());
+        System.out.println("|---- 3 - " +produto.get(i).getQuantidade());
+        System.out.println("|---- 4 - " +produto.get(i).getPreco());
+        System.out.println("|---- 5 - " +produto.get(i).getFornecedornome());
+
+
+        inpOpcaoEdicao = scan.nextInt();
+        switch(inpOpcaoEdicao){
+            case 1:
+                System.out.println("|---- Menu Produto ----|");
+                System.out.println("|---- Digite o novo NOME ----|");
+                System.out.print("|---- ");
+                novo = scan.nextLine();
+                produto.get(i).setNome(novo);
+                System.out.println("NOME alteradado para: " +produto.get(i).getNome());
+                break;
+            case 2:
+                System.out.println("|---- Menu Produto ----|");
+                System.out.println("|---- Digite Uma nova Descricao ----|");
+                System.out.print("|---- ");
+                novo = scan.nextLine();
+                produto.get(i).setDescricao(novo);
+                System.out.println("Descricao alteradada para: " +produto.get(i).getDescricao());
+                break;
+            case 3:
+                System.out.println("|---- Menu Produto ----|");
+                System.out.println("|---- Digite a nova Quantidade ----|");
+                System.out.print("|---- ");
+                int nova = scan.nextInt();
+                produto.get(i).setQuantidade(nova);
+                System.out.println("Quantidade alteradada para: " +produto.get(i).getQuantidade());
+                break;
+            case 4:
+                System.out.println("|---- Menu Produto ----|");
+                System.out.println("|---- Digite o novo Preco ----|");
+                System.out.print("|---- ");
+                double novaD = scan.nextDouble();
+                produto.get(i).setPreco(novaD);
+                System.out.println("Preco alteradado para: " +produto.get(i).getPreco());
+                break;
+            case 5:
+                System.out.println("|---- Menu Produto ----|");
+                for(int j = 0; j < fornecedor.size(); j = j + 1){          
+                    System.out.println("|---- " + j + ") " + fornecedor.get(j).getNomeFantasia() + " " +  fornecedor.get(j).getRazaoSocial() + " - " +  fornecedor.get(j).getCNPJ());
+                }
+                System.out.println("|---- Digite o novo Fornecedor ----|");
+                System.out.print("|---- ");
+                int posicaoFornecedor = scan.nextInt();
+                Fornecedor tempFornecedor = fornecedor.get(posicaoFornecedor);
+                produto.get(i).setFornecedor(tempFornecedor);
+                System.out.println("Fornecedor alteradado para: " +produto.get(i).getFornecedornome());
+                break;                                            
+            default:
+                System.out.println("Numero inexistente");
+                editarProduto(i);
+        }
+    } 
     
     public void registrarVenda(){
         Scanner scan = new Scanner(System.in);
