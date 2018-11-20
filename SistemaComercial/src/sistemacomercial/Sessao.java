@@ -1107,53 +1107,95 @@ public class Sessao{
     
     public void registrarVenda(){
         Scanner scan = new Scanner(System.in);
-        String vendedorVenda, clienteVenda, produtoVenda;
-        int produtoQtdeVenda;
+        String vendedorVenda, clienteVenda, produtoVenda,achou = null;
+        int produtoQtdeVenda,validaProduto = 0;
         Vendedor tempVendedor;
         Cliente tempCliente;
         Produto tempProduto;
         
         System.out.println("|---- Menu Registrar Venda ----|");
+        System.out.println("Lista de Vendedores:");
+        for(int i = 0; i < vendedor.size(); i = i + 1){             
+            System.out.println(vendedor.get(i).getNome());        
+        }
         System.out.print("|---- Vendedor: ");
-        vendedorVenda = scan.next();
-        System.out.print("|---- Cliente: ");
-        clienteVenda = scan.next();
-        System.out.print("|---- Produto: ");
-        produtoVenda = scan.next();
-        System.out.print("|---- Quantidade: ");
-        produtoQtdeVenda = scan.nextInt();
-        
+        vendedorVenda = scan.nextLine();       
         for(int i = 0; i < vendedor.size(); i = i + 1){  
             tempVendedor = vendedor.get(i);        
              if (vendedorVenda.equals(tempVendedor.getNome())){
-                 System.out.println("|---- Vendedor Validado");
-                 i = vendedor.size() + 1;
-             }else{
-                 System.out.println("Vendedor não encontrado, cadastre como novo vendedor");
+
+                 achou = "sim";
+                i = vendedor.size() + 1;                
              }
         }
+        if("sim".equals(achou)){
+            System.out.println("|---- Vendedor Validado");
+            achou = null;
+        }else {
+            System.out.println("|---- Vendedor nao encontrado");
+            newSessao();
+        }
+        System.out.println("Lista de Clientes:");
+        for(int i = 0; i < cliente.size(); i = i + 1){             
+            System.out.println(cliente.get(i).getNome());        
+        }
+        System.out.print("|---- Cliente: ");
+        clienteVenda = scan.nextLine();
         for(int i = 0; i < cliente.size(); i = i + 1){  
             tempCliente = cliente.get(i);        
-             if (vendedorVenda.equals(tempCliente.getNome())){
-                 System.out.println("|---- Cliente Validado");
-                 i = vendedor.size() + 1;
-             }else{
-                 System.out.println("Cliente não encontrado, cadastre como novo cliente");
+             if (clienteVenda.equals(tempCliente.getNome())){
+                 achou = "sim";
+                i = cliente.size() + 1;                
              }
         }
+        if("sim".equals(achou)){
+            System.out.println("|---- Cliente Validado");
+            achou = null;
+        }else {
+            System.out.println("|---- Cliente nao encontrado");
+            newSessao();
+        }
+        
+        System.out.println("Lista de Produtos:");
+        for(int i = 0; i < produto.size(); i = i + 1){             
+            System.out.println(produto.get(i).getNome());        
+        }
+        System.out.print("|---- Produto: ");
+        produtoVenda = scan.nextLine();
+        
         for(int i = 0; i < produto.size(); i = i + 1){  
-            tempProduto = produto.get(i);  
-            if(produtoVenda.equals(tempProduto.getNome())){
-                System.out.println("|---- Produto Validao");
-            }else{
-                 System.out.println("Produto não encontrado, cadastre como novo produto");
+            tempProduto = produto.get(i);        
+             if (produtoVenda.equals(tempProduto.getNome())){
+                 achou = "sim";
+                 validaProduto = i;
+                 
+                i = produto.size() + 1;                
              }
-            System.out.println("|---- Valor: " + (tempProduto.getPreco() * produtoQtdeVenda));
-            //Arruma estoque da quantidade de produtos
-            int qntde = tempProduto.getQuantidade();
-            qntde = qntde - produtoQtdeVenda;
-            tempProduto.setQuantidade(qntde);
         }
+
+        tempProduto = produto.get(validaProduto);
+        if("sim".equals(achou)){
+            System.out.println("|---- Produto Validado");
+            achou = null;
+        }else {
+            System.out.println("|---- Produto nao encontrado");
+            newSessao();
+        }
+        
+        System.out.print("|---- Quantidade: ");
+        produtoQtdeVenda = scan.nextInt();
+        System.out.println("|---- Valor: " + (tempProduto.getPreco() * produtoQtdeVenda));
+        //Arruma estoque da quantidade de produtos
+        int qntde = tempProduto.getQuantidade();
+        qntde = qntde - produtoQtdeVenda;
+        tempProduto.setQuantidade(qntde);
+        if(qntde == 0){
+            deletarProduto(validaProduto);
+            System.out.println("Produto acabou e foi removido");
+        }
+        
+
+
         
         //Venda vendaS = new Venda();
         

@@ -36,6 +36,7 @@ public class SistemaComercial {
         Fornecedor Forne1 = new Fornecedor("Lavanderia Star ", "Gael e Hadassa Lavanderia Ltda", "69864189000167","gael@hotmail.com","(41)986691100","Curitiba","PR", "Brasil", "Rua qualquer 55  ", "70","01/05/2018", fornecedor);
         Fornecedor fornecedor2 = new Fornecedor("Fábio e Isabel Transportes ME", "Fábio e Isabel", "04.039.351/0001-67", "faleconosco@fabioeisabeltelasme.com.br", "(43) 2668-0036", "Londrina", "PR", "Brasil", "Rua Antônio Carlos de Oliveira Leme", "358", "10/11/20118", fornecedor);
         Produto prod = new Produto("Caneta","Produto Grande",1,1200.00,Forne1,produto);
+        Produto prod2 = new Produto("Caneta2","Produto Grande",1,1200.00,Forne1,produto);
         //Carregar aruivo com os dados das classes
 //        FileInputStream inputFile = new FileInputStream("vendedor.ser");
 //        ObjectInputStream in = new ObjectInputStream(inputFile);
