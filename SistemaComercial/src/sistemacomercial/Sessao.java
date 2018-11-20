@@ -136,7 +136,11 @@ public class Sessao {
             }
             System.out.println("|---- Escolha o numero do vendedor ----|");
             inpNumeroVendedor = scan.nextInt();
-
+            while(inpNumeroVendedor < vendedor.size() || vendedor.size() < inpNumeroVendedor){
+                System.out.println("Vendedor nao existe por favor digite um numero valido");
+                System.out.println("|---- Escolha o numero do vendedor ----|");
+                inpNumeroVendedor = scan.nextInt();
+            }
 
             System.out.println("|---- D para DELETAR, ou E para EDITAR ----|");
             inpOpcao = scan.next();
@@ -227,6 +231,11 @@ public class Sessao {
             }
             System.out.println("|---- Escolha o numero do Cliente ----|");
             inpNumeroCliente = scan.nextInt();
+            while(inpNumeroCliente < cliente.size() || cliente.size() < inpNumeroCliente){
+                System.out.println("Fornecedor nao existe por favor digite um numero valido");
+                System.out.println("|---- Escolha o numero do Fornecedor----|");
+                inpNumeroCliente = scan.nextInt();
+            }            
             System.out.println("|---- D para DELETAR, ou E para EDITAR ----|");
             inpOpcao = scan.next();
 
@@ -281,19 +290,43 @@ public class Sessao {
             }
 
         } else {
-            int auxiliar = 0;
+            System.out.println("|---- Menu Cliente ----|");
+            System.out.println("|---- Escolha uma opcao ----|");
             for (int i = 0; i < cliente.size(); i = i + 1) {
                 System.out.println("|---- " + i + ") " + cliente.get(i).getNome() + " " + cliente.get(i).getSobrenome() + " - " + cliente.get(i).getCPF());
-                auxiliar = i;
             }
-            System.out.println("|---- Digite 1 para editar seus dados \n|---- Ou digite 2 para sair");
-            inpDigito = scan.nextInt();
-            while (inpDigito != 2 && inpDigito != 1) {
-                System.out.println("|---- Digite 1 para editar seus dados \n |---- Ou digite 2 para sair");
+            System.out.println("|---- Escolha o numero do Cliente ----|");
+            inpNumeroCliente = scan.nextInt();
+            while(inpNumeroCliente < cliente.size() || cliente.size() < inpNumeroCliente){
+                System.out.println("Cliente nao existe por favor digite um numero valido");
+                System.out.println("|---- Escolha o numero do Cliente ----|");
+                inpNumeroCliente = scan.nextInt();
+            }
+            System.out.println("|---- E para EDITAR ou S para sair ----|");
+            inpOpcao = scan.next();
+            if ("E".equals(inpOpcao) || "e".equals(inpOpcao)) {
+                editarCliente(inpNumeroCliente);
+                System.out.println("1 - Retornar para o Menu");
+                System.out.println("2 - Olhar novamente a lista de Cliente");
+                System.out.println("3 - Finalizar");
                 inpDigito = scan.nextInt();
-            }
-            if (inpDigito == 1) {
-                editarCliente(auxiliar);
+                switch (inpDigito) {
+
+                    case 1:
+                        newSessao();
+                        break;
+                    case 2:
+                        listarCliente();
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        System.out.println("Opcao invalida retornando ao Menu");
+                        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+                        newSessao();
+                }
+            } else {
+                newSessao();
             }
         }
     }
@@ -309,6 +342,11 @@ public class Sessao {
             }
             System.out.println("|---- Escolha o numero do Fornecedor ----|");
             inpNumeroFornecedor = scan.nextInt();
+            while(inpNumeroFornecedor < fornecedor.size() || fornecedor.size() < inpNumeroFornecedor){
+                System.out.println("Fornecedor nao existe por favor digite um numero valido");
+                System.out.println("|---- Escolha o numero do Fornecedor----|");
+                inpNumeroFornecedor = scan.nextInt();
+            }            
             System.out.println("|---- D para DELETAR, ou E para EDITAR ----|");
             inpOpcao = scan.next();
 
@@ -363,19 +401,43 @@ public class Sessao {
             }
 
         } else {
-            int auxiliar = 0;
+            System.out.println("|---- Menu Fornecedor ----|");
+            System.out.println("|---- Escolha uma opcao ----|");
             for (int i = 0; i < fornecedor.size(); i = i + 1) {
                 System.out.println("|---- " + i + ") " + fornecedor.get(i).getNomeFantasia() + " " + fornecedor.get(i).getRazaoSocial() + " - " + fornecedor.get(i).getCNPJ());
-                auxiliar = i;
             }
-            System.out.println("|---- Digite 1 para editar seus dados \n|---- Ou digite 2 para sair");
-            inpDigito = scan.nextInt();
-            while (inpDigito != 2 && inpDigito != 1) {
-                System.out.println("|---- Digite 1 para editar seus dados \n |---- Ou digite 2 para sair");
+            System.out.println("|---- Escolha o numero do Fornecedor ----|");
+            inpNumeroFornecedor = scan.nextInt();
+            while(inpNumeroFornecedor < fornecedor.size() || fornecedor.size() < inpNumeroFornecedor){
+                System.out.println("Fornecedor nao existe por favor digite um numero valido");
+                System.out.println("|---- Escolha o numero do Fornecedor ----|");
+                inpNumeroFornecedor = scan.nextInt();
+            }
+            System.out.println("|---- E para EDITAR ou S para sair ----|");
+            inpOpcao = scan.next();
+            if ("E".equals(inpOpcao) || "e".equals(inpOpcao)) {
+                editarFornecedor(inpNumeroFornecedor);
+                System.out.println("1 - Retornar para o Menu");
+                System.out.println("2 - Olhar novamente a lista de Fornecedor");
+                System.out.println("3 - Finalizar");
                 inpDigito = scan.nextInt();
-            }
-            if (inpDigito == 1) {
-                editarFornecedor(auxiliar);
+                switch (inpDigito) {
+
+                    case 1:
+                        newSessao();
+                        break;
+                    case 2:
+                        listarFornecedor();
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        System.out.println("Opcao invalida retornando ao Menu");
+                        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+                        newSessao();
+                }
+            } else {
+                newSessao();
             }
         }
     }
@@ -391,6 +453,11 @@ public class Sessao {
             }
             System.out.println("|---- Escolha o numero do Produto ----|");
             inpNumeroProduto = scan.nextInt();
+            while(inpNumeroProduto < produto.size() || produto.size() < inpNumeroProduto){
+                System.out.println("Produto nao existe por favor digite um numero valido");
+                System.out.println("|---- Escolha o numero do Produto ----|");
+                inpNumeroProduto = scan.nextInt();
+            }
             System.out.println("|---- D para DELETAR, ou E para EDITAR ----|");
             inpOpcao = scan.next();
 
@@ -451,6 +518,11 @@ public class Sessao {
             }
             System.out.println("|---- Escolha o numero do Produto ----|");
             inpNumeroProduto = scan.nextInt();
+            while(inpNumeroProduto < produto.size() || produto.size() < inpNumeroProduto){
+                System.out.println("Produto nao existe por favor digite um numero valido");
+                System.out.println("|---- Escolha o numero do Produto ----|");
+                inpNumeroProduto = scan.nextInt();
+            }
             System.out.println("|---- E para EDITAR ou S para sair ----|");
             inpOpcao = scan.next();
             if ("E".equals(inpOpcao) || "e".equals(inpOpcao)) {
