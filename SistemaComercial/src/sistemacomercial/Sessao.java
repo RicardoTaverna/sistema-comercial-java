@@ -1258,8 +1258,8 @@ public class Sessao {
 
     public void registrarVenda() {
         Scanner scan = new Scanner(System.in);
-        String vendedorVenda, clienteVenda,  achou = null;
-        int produtoQtdeVenda, validaProduto = 0, validaVendedor = 0, validaCliente = 0,produtoVenda;
+        String  clienteVenda,  achou = null;
+        int produtoQtdeVenda, validaProduto = 0, validaVendedor = 0, validaCliente = 0,produtoVenda,vendedorVenda;
 
         Vendedor tempVendedor;
         Cliente tempCliente;
@@ -1268,31 +1268,24 @@ public class Sessao {
         System.out.println("|---- Menu Registrar Venda ----|");
         System.out.println("Lista de Vendedores:");
         for (int i = 0; i < vendedor.size(); i = i + 1) {
-            System.out.println(vendedor.get(i).getNome()+ " " +vendedor.get(i).getSobrenome() + " CPF: "+ vendedor.get(i).getCPF());
-        }       
-        System.out.print("|---- Vendedor: ");
-        vendedorVenda = scan.nextLine();
-        for (int i = 0; i < vendedor.size(); i = i + 1) {
-            tempVendedor = vendedor.get(i);
-            if (vendedorVenda.equals(tempVendedor.getNome())) {
-                achou = "sim";
-                validaVendedor = i;
-                i = vendedor.size() + 1;
-            }
+                System.out.println("|---- " + i + ") " + vendedor.get(i).getNome() + " " + vendedor.get(i).getSobrenome()+ " " + vendedor.get(i).getCPF());
+            }      
+        System.out.print("|---- Digite o numero do Vendedor: ");
+        vendedorVenda = scan.nextInt();
+        while(vendedorVenda < (vendedor.size()- vendedor.size()) || vendedor.size() < vendedorVenda){
+            System.out.println("Vendedor nao existe por favor digite um numero valido");
+            System.out.println("|---- Escolha o numero do Vendedor ----|");
+            vendedorVenda = scan.nextInt();
         }
-        if ("sim".equals(achou)) {
-            System.out.println("|---- Vendedor Validado");
-            achou = null;
-        } else {
-            System.out.println("|---- Vendedor nao encontrado");
-            newSessao();
-        }
+         tempVendedor = vendedor.get(vendedorVenda);
+         System.out.println("Vendedor Validado");
         System.out.println("Lista de Clientes:");
         for (int i = 0; i < cliente.size(); i = i + 1) {
             System.out.println(cliente.get(i).getNome()+ " " +cliente.get(i).getSobrenome() + " CPF: "+ cliente.get(i).getCPF());
         }
         System.out.print("|----Digite o CPF do Cliente: ");
-        clienteVenda = scan.nextLine();
+        clienteVenda = scan.next();
+
         for (int i = 0; i < cliente.size(); i = i + 1) {
             tempCliente = cliente.get(i);
             if (clienteVenda.equals(tempCliente.getCPF())) {
@@ -1359,7 +1352,7 @@ public class Sessao {
         }
                 
 
-        tempVendedor = vendedor.get(validaVendedor);
+
         tempCliente = cliente.get(validaCliente);
 
         if (qntde == 0) {
