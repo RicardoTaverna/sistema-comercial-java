@@ -1427,7 +1427,7 @@ public class Sessao {
                 if(vendedor.get(i).getCodigo() == vendedorCodigo){
                     System.out.println("Vendedor Validado");
                     tempVendedor = vendedor.get(i);
-                    System.out.println("|---- \" + i + \") \" + vendedor.get(i).getNome() + \" \" + vendedor.get(i).getSobrenome()+ \" \" + vendedor.get(i).getCPF()");
+                    System.out.println("|---- " + i + " " + vendedor.get(i).getNome() + " " + vendedor.get(i).getSobrenome()+ " " + vendedor.get(i).getCPF());
                     i = vendedor.size() + 1;
                     valida = true;
                 }else{
