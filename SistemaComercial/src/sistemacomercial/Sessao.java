@@ -592,7 +592,7 @@ public class Sessao {
         tempendereco = scan.nextLine();
         if ("vendedorAdm".equals(validaPapel)) {
             System.out.print("Digite o PAPEL(vendedor-administrador): ");
-            temppapel = scan.next();
+            temppapel = scan.nextLine();
         } else {
             temppapel = "vendedor";
         }
