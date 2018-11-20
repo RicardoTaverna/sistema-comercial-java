@@ -13,9 +13,9 @@ import java.util.ArrayList;
  */
 public class Vendedor {
     private String nome, sobrenome, datanascimento, telefone, CPF, cidade, estado, pais, endereco, dataCadastro, login, senha, papel;
+    int codigo;
     
-    
-    public Vendedor(String nome, String sobrenome, String datanascimento, String telefone, String CPF, String cidade, String estado, String pais, String endereco, String dataCadastro, String login, String senha, String papel, ArrayList<Vendedor> vendedor) {
+    public Vendedor(String nome, String sobrenome, String datanascimento, String telefone, String CPF, String cidade, String estado, String pais, String endereco, String dataCadastro, String login, String senha, String papel, int codigo, ArrayList<Vendedor> vendedor) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.datanascimento = datanascimento;
@@ -29,9 +29,18 @@ public class Vendedor {
         this.login = login;
         this.senha = senha;
         this.papel = papel;
+        this.codigo = codigo;
         vendedor.add(this);
         
     }    
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
     
     public String getNome() {
         return nome;

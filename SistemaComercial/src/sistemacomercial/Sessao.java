@@ -555,7 +555,7 @@ public class Sessao {
     public void cadastraVendedor() {
         Scanner scan = new Scanner(System.in);
         String tempnome, tempsobrenome, tempdatanascimento, temptelefone, tempCPF, tempcidade, tempestado, temppais, tempendereco, tempdataCadastro, templogin, tempsenha, temppapel;
-        int inptOpcao;
+        int inptOpcao, tempcodigo;
         Vendedor tempVendedor2;
         System.out.println("|---- Menu Cadastrar Vendedor ----|");
         System.out.print("Digite o CPF: ");
@@ -592,7 +592,8 @@ public class Sessao {
         }
         System.out.print("Digite seu Login: ");
         templogin = scan.nextLine();
-
+        System.out.print("Digite o CODIGO de vendedor: ");
+        tempcodigo = scan.nextInt();
         //pegar a data de cadastro automatico do sistema através da biblioteca java.utils.Date
         Date data = new Date();
         tempdataCadastro = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(data);
@@ -603,7 +604,7 @@ public class Sessao {
         //senha criada automaticamente atravez da 1 letra do nome 1 letra do sobrenome @ ano de nascimento
         tempsenha = (tempnome.substring(0, 1) + tempsobrenome.substring(0, 1) + "@" + tempdatanascimento.substring(6, 10));
 
-        Vendedor tempVendedor = new Vendedor(tempnome, tempsobrenome, tempdatanascimento, temptelefone, tempCPF, tempcidade, tempestado, temppais, tempendereco, tempdataCadastro, templogin, tempsenha, temppapel, vendedor);
+        Vendedor tempVendedor = new Vendedor(tempnome, tempsobrenome, tempdatanascimento, temptelefone, tempCPF, tempcidade, tempestado, temppais, tempendereco, tempdataCadastro, templogin, tempsenha, temppapel, tempcodigo, vendedor);
 
         System.out.println("|---- Cadastrado o vendedor " + tempVendedor.getNome());
         System.out.println("|---- Seu login: " + tempVendedor.getLogin());
@@ -1259,26 +1260,22 @@ public class Sessao {
     public void registrarVenda() {
         Scanner scan = new Scanner(System.in);
         String  clienteVenda,  achou = null;
-        int produtoQtdeVenda, validaProduto = 0, validaVendedor = 0, validaCliente = 0,produtoVenda,vendedorVenda;
+        int produtoQtdeVenda, validaProduto = 0, validaVendedor = 0, validaCliente = 0,produtoVenda,vendedorVenda, vendedorCodigo;
 
-        Vendedor tempVendedor;
+        Vendedor tempVendedor = null;
         Cliente tempCliente;
         Produto tempProduto;
 
         System.out.println("|---- Menu Registrar Venda ----|");
-        System.out.println("Lista de Vendedores:");
+        /*System.out.println("Lista de Vendedores:");
         for (int i = 0; i < vendedor.size(); i = i + 1) {
                 System.out.println("|---- " + i + ") " + vendedor.get(i).getNome() + " " + vendedor.get(i).getSobrenome()+ " " + vendedor.get(i).getCPF());
-            }      
-        System.out.print("|---- Digite o numero do Vendedor: ");
-        vendedorVenda = scan.nextInt();
-        while(vendedorVenda < (vendedor.size()- vendedor.size()) || vendedor.size() < vendedorVenda){
-            System.out.println("Vendedor nao existe por favor digite um numero valido");
-            System.out.println("|---- Escolha o numero do Vendedor ----|");
-            vendedorVenda = scan.nextInt();
-        }
-         tempVendedor = vendedor.get(vendedorVenda);
-         System.out.println("Vendedor Validado");
+            }      */
+        System.out.print("|---- Digite o CODIGO de Vendedor: ");
+        vendedorCodigo = scan.nextInt();
+        
+        tempVendedor = validaCodigo(vendedorCodigo, tempVendedor);
+        System.out.println("Vendedor Validado");
         System.out.println("Lista de Clientes:");
         for (int i = 0; i < cliente.size(); i = i + 1) {
             System.out.println(cliente.get(i).getNome()+ " " +cliente.get(i).getSobrenome() + " CPF: "+ cliente.get(i).getCPF());
@@ -1409,6 +1406,26 @@ public class Sessao {
         } else {
             System.out.println("Desligando");
         }
+    }
+    
+    public Vendedor validaCodigo(int vendedorCodigo, Vendedor tempVendedor){
+        
+        boolean valida = false;
+        while(valida == false){
+            for (int i = 0; i < vendedor.size(); i = i + 1) {
+                if(vendedor.get(i).getCodigo() == vendedorCodigo){
+                    System.out.println("Vendedor Validado");
+                    tempVendedor = vendedor.get(i);
+                    System.out.println("|---- \" + i + \") \" + vendedor.get(i).getNome() + \" \" + vendedor.get(i).getSobrenome()+ \" \" + vendedor.get(i).getCPF()");
+                    i = vendedor.size() + 1;
+                    valida = true;
+                }else{
+                    System.out.println("Vendedor nao existe por favor digite um numero valido");
+                    validaCodigo(vendedorCodigo, tempVendedor);
+                }
+            }
+        }
+        return tempVendedor;
     }
     
 }
