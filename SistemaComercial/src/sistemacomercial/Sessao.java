@@ -8,6 +8,7 @@ package sistemacomercial;
 import static java.lang.Thread.sleep;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import static sistemacomercial.SistemaComercial.vendedor;
 import static sistemacomercial.SistemaComercial.cliente;
@@ -135,6 +136,8 @@ public class Sessao {
             }
             System.out.println("|---- Escolha o numero do vendedor ----|");
             inpNumeroVendedor = scan.nextInt();
+
+
             System.out.println("|---- D para DELETAR, ou E para EDITAR ----|");
             inpOpcao = scan.next();
             if ("D".equals(inpOpcao) || "d".equals(inpOpcao)) {
@@ -487,7 +490,7 @@ public class Sessao {
         System.out.print("Digite o SOBRENOME: ");
         tempsobrenome = scan.nextLine();
         System.out.print("Digite a DATA DE NASCIMENTO(dd/mm/aaaa): ");
-        tempdatanascimento = scan.next();
+        tempdatanascimento = scan.nextLine();
         System.out.print("Digite o TELEFONE: ");
         temptelefone = scan.nextLine();
         System.out.print("Digite o CPF: ");
@@ -506,13 +509,15 @@ public class Sessao {
         } else {
             temppapel = "vendedor";
         }
+        System.out.print("Digite seu Login: ");
+        templogin = scan.nextLine();
 
         //pegar a data de cadastro automatico do sistema através da biblioteca java.utils.Date
         Date data = new Date();
         tempdataCadastro = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(data);
 
-        //login criado automatico utilizando 1 nome . sobrenome
-        templogin = (tempnome + "." + tempsobrenome);
+
+
 
         //senha criada automaticamente atravez da 1 letra do nome 1 letra do sobrenome @ ano de nascimento
         tempsenha = (tempnome.substring(0, 1) + tempsobrenome.substring(0, 1) + "@" + tempdatanascimento.substring(6, 10));
