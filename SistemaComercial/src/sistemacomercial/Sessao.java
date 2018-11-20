@@ -24,7 +24,7 @@ public class Sessao {
 
     private String inpLogin, inpSenha, validaPapel;
     private boolean validador = false;
-    private int inpMenuVendedor, inpDigito, inpNumeroVendedor, inpNumeroCliente, inpNumeroFornecedor, inpNumeroProduto;
+    private int inpNumero,inpDigito;
     private String inpOpcao;
     private double debito = 0.0, dinheiro = 0.0;
 
@@ -80,22 +80,11 @@ public class Sessao {
             System.out.println("|---- 11) Fechamento do Dia");
             System.out.print("Escolha o número do MENU: ");
             Scanner scan = new Scanner(System.in);
-            inpMenuVendedor = 0;
-            boolean bError = true;
-            while (bError) {
-                if (scan.hasNextInt())
-                    inpMenuVendedor = scan.nextInt();
-                else {
-                    scan.next();
-                    System.out.print("Opcao NAO existe, Escolha o número do MENU: ");
-                    continue;
-                }
-                
-                bError = false;
-            }
-            System.out.println(inpMenuVendedor);
+
+
+            validaInt();
             
-            switch (inpMenuVendedor) {
+            switch (inpNumero) {
                 case 1:
                     cadastraVendedor();
                     break;
@@ -149,28 +138,31 @@ public class Sessao {
                 System.out.println("|---- " + i + ") " + vendedor.get(i).getNome() + " " + vendedor.get(i).getSobrenome() + " - " + vendedor.get(i).getCPF());
             }
             System.out.println("|---- Escolha o numero do vendedor ----|");
-            inpNumeroVendedor = scan.nextInt();
-            while(inpNumeroVendedor < (vendedor.size()- vendedor.size()) || vendedor.size() < inpNumeroVendedor){
+            validaInt();
+            
+            while(inpNumero < (vendedor.size()- vendedor.size()) || vendedor.size() < inpNumero){
                 System.out.println("Vendedor nao existe por favor digite um numero valido");
                 System.out.println("|---- Escolha o numero do vendedor ----|");
-                inpNumeroVendedor = scan.nextInt();
+                validaInt();
             }
 
             System.out.println("|---- D para DELETAR, ou E para EDITAR ----|");
             inpOpcao = scan.next();
+            scan.nextLine();
             if ("D".equals(inpOpcao) || "d".equals(inpOpcao)) {
-                if (vendedor.get(inpNumeroVendedor).getLogin().equals(inpLogin)) {
+                if (vendedor.get(inpNumero).getLogin().equals(inpLogin)) {
                     System.out.println("Impossivel deletar o proprio usuario");
                     listarVendedor();
 
                 }
             }
             if ("D".equals(inpOpcao) || "d".equals(inpOpcao)) {
-                deletarVendedor(inpNumeroVendedor);
+                deletarVendedor(inpNumero);
                 System.out.println("1 - Retornar para o Menu");
                 System.out.println("2 - Olhar novamente a lista de vendedores");
                 System.out.println("3 - Finalizar");
                 inpDigito = scan.nextInt();
+                scan.nextLine();
                 switch (inpDigito) {
                     case 1:
                         newSessao();
@@ -188,11 +180,11 @@ public class Sessao {
                         break;
                 }
             } else if ("E".equals(inpOpcao) || "e".equals(inpOpcao)) {
-                editarVendedor(inpNumeroVendedor);
+                editarVendedor(inpNumero);
                 System.out.println("1 - Retornar para o Menu");
                 System.out.println("2 - Olhar novamente a lista de vendedores");
                 System.out.println("3 - Finalizar");
-                inpDigito = scan.nextInt();
+                inpDigito = scan.nextInt(); scan.nextLine();
                 switch (inpDigito) {
                     case 1:
                         newSessao();
@@ -244,17 +236,17 @@ public class Sessao {
                 System.out.println("|---- " + i + ") " + cliente.get(i).getNome() + " " + cliente.get(i).getSobrenome() + " - " + cliente.get(i).getCPF());
             }
             System.out.println("|---- Escolha o numero do Cliente ----|");
-            inpNumeroCliente = scan.nextInt();
-            while(inpNumeroCliente < (cliente.size()- cliente.size()) || cliente.size() < inpNumeroCliente){
+            validaInt();
+            while(inpNumero < (cliente.size()- cliente.size()) || cliente.size() < inpNumero){
                 System.out.println("Fornecedor nao existe por favor digite um numero valido");
                 System.out.println("|---- Escolha o numero do Fornecedor----|");
-                inpNumeroCliente = scan.nextInt();
+                validaInt();
             }            
             System.out.println("|---- D para DELETAR, ou E para EDITAR ----|");
             inpOpcao = scan.next();
 
             if ("D".equals(inpOpcao) || "d".equals(inpOpcao)) {
-                deletarCliente(inpNumeroCliente);
+                deletarCliente(inpNumero);
                 System.out.println("1 - Retornar para o Menu");
                 System.out.println("2 - Olhar novamente a lista de Clientes");
                 System.out.println("3 - Finalizar");
@@ -276,7 +268,7 @@ public class Sessao {
                         break;
                 }
             } else if ("E".equals(inpOpcao) || "e".equals(inpOpcao)) {
-                editarCliente(inpNumeroCliente);
+                editarCliente(inpNumero);
                 System.out.println("1 - Retornar para o Menu");
                 System.out.println("2 - Olhar novamente a lista de Clientes");
                 System.out.println("3 - Finalizar");
@@ -310,16 +302,16 @@ public class Sessao {
                 System.out.println("|---- " + i + ") " + cliente.get(i).getNome() + " " + cliente.get(i).getSobrenome() + " - " + cliente.get(i).getCPF());
             }
             System.out.println("|---- Escolha o numero do Cliente ----|");
-            inpNumeroCliente = scan.nextInt();
-            while(inpNumeroCliente < (cliente.size()- cliente.size()) || cliente.size() < inpNumeroCliente){
+            validaInt();
+            while(inpNumero < (cliente.size()- cliente.size()) || cliente.size() < inpNumero){
                 System.out.println("Cliente nao existe por favor digite um numero valido");
                 System.out.println("|---- Escolha o numero do Cliente ----|");
-                inpNumeroCliente = scan.nextInt();
+                validaInt();
             }
             System.out.println("|---- E para EDITAR ou S para sair ----|");
             inpOpcao = scan.next();
             if ("E".equals(inpOpcao) || "e".equals(inpOpcao)) {
-                editarCliente(inpNumeroCliente);
+                editarCliente(inpNumero);
                 System.out.println("1 - Retornar para o Menu");
                 System.out.println("2 - Olhar novamente a lista de Cliente");
                 System.out.println("3 - Finalizar");
@@ -355,17 +347,17 @@ public class Sessao {
                 System.out.println("|---- " + i + ") " + fornecedor.get(i).getNomeFantasia() + " " + fornecedor.get(i).getRazaoSocial() + " - " + fornecedor.get(i).getCNPJ());
             }
             System.out.println("|---- Escolha o numero do Fornecedor ----|");
-            inpNumeroFornecedor = scan.nextInt();
-            while(inpNumeroFornecedor < (fornecedor.size()- fornecedor.size()) || fornecedor.size() < inpNumeroFornecedor){
+            validaInt();
+            while(inpNumero < (fornecedor.size()- fornecedor.size()) || fornecedor.size() < inpNumero){
                 System.out.println("Fornecedor nao existe por favor digite um numero valido");
                 System.out.println("|---- Escolha o numero do Fornecedor----|");
-                inpNumeroFornecedor = scan.nextInt();
+                validaInt();
             }            
             System.out.println("|---- D para DELETAR, ou E para EDITAR ----|");
             inpOpcao = scan.next();
 
             if ("D".equals(inpOpcao) || "d".equals(inpOpcao)) {
-                deletarFornecedor(inpNumeroFornecedor);
+                deletarFornecedor(inpNumero);
                 System.out.println("1 - Retornar para o Menu");
                 System.out.println("2 - Olhar novamente a lista de Fornecedor");
                 System.out.println("3 - Finalizar");
@@ -387,7 +379,7 @@ public class Sessao {
                         break;
                 }
             } else if ("E".equals(inpOpcao) || "e".equals(inpOpcao)) {
-                editarFornecedor(inpNumeroFornecedor);
+                editarFornecedor(inpNumero);
                 System.out.println("1 - Retornar para o Menu");
                 System.out.println("2 - Olhar novamente a lista de Fornecedor");
                 System.out.println("3 - Finalizar");
@@ -421,16 +413,16 @@ public class Sessao {
                 System.out.println("|---- " + i + ") " + fornecedor.get(i).getNomeFantasia() + " " + fornecedor.get(i).getRazaoSocial() + " - " + fornecedor.get(i).getCNPJ());
             }
             System.out.println("|---- Escolha o numero do Fornecedor ----|");
-            inpNumeroFornecedor = scan.nextInt();
-            while(inpNumeroFornecedor < (fornecedor.size()- fornecedor.size()) || fornecedor.size() < inpNumeroFornecedor){
+            validaInt();
+            while(inpNumero < (fornecedor.size()- fornecedor.size()) || fornecedor.size() < inpNumero){
                 System.out.println("Fornecedor nao existe por favor digite um numero valido");
                 System.out.println("|---- Escolha o numero do Fornecedor ----|");
-                inpNumeroFornecedor = scan.nextInt();
+                validaInt();
             }
             System.out.println("|---- E para EDITAR ou S para sair ----|");
             inpOpcao = scan.next();
             if ("E".equals(inpOpcao) || "e".equals(inpOpcao)) {
-                editarFornecedor(inpNumeroFornecedor);
+                editarFornecedor(inpNumero);
                 System.out.println("1 - Retornar para o Menu");
                 System.out.println("2 - Olhar novamente a lista de Fornecedor");
                 System.out.println("3 - Finalizar");
@@ -466,17 +458,17 @@ public class Sessao {
                 System.out.println("|---- " + i + ") " + produto.get(i).getNome() + " " + produto.get(i).getDescricao());
             }
             System.out.println("|---- Escolha o numero do Produto ----|");
-            inpNumeroProduto = scan.nextInt();
-            while(inpNumeroProduto < (produto.size()- produto.size()) || produto.size() < inpNumeroProduto){
+            validaInt();
+            while(inpNumero < (produto.size()- produto.size()) || produto.size() < inpNumero){
                 System.out.println("Produto nao existe por favor digite um numero valido");
                 System.out.println("|---- Escolha o numero do Produto ----|");
-                inpNumeroProduto = scan.nextInt();
+                validaInt();
             }
             System.out.println("|---- D para DELETAR, ou E para EDITAR ----|");
             inpOpcao = scan.next();
 
             if ("D".equals(inpOpcao) || "d".equals(inpOpcao)) {
-                deletarProduto(inpNumeroProduto);
+                deletarProduto(inpNumero);
                 System.out.println("1 - Retornar para o Menu");
                 System.out.println("2 - Olhar novamente a lista de Produtos");
                 System.out.println("3 - Finalizar");
@@ -498,7 +490,7 @@ public class Sessao {
 
                 }
             } else if ("E".equals(inpOpcao) || "e".equals(inpOpcao)) {
-                editarProduto(inpNumeroProduto);
+                editarProduto(inpNumero);
                 System.out.println("1 - Retornar para o Menu");
                 System.out.println("2 - Olhar novamente a lista de Produto");
                 System.out.println("3 - Finalizar");
@@ -531,16 +523,16 @@ public class Sessao {
                 System.out.println("|---- " + i + ") " + produto.get(i).getNome() + " " + produto.get(i).getDescricao());
             }
             System.out.println("|---- Escolha o numero do Produto ----|");
-            inpNumeroProduto = scan.nextInt();
-            while(inpNumeroProduto < (produto.size()- produto.size()) || produto.size() < inpNumeroProduto){
+            validaInt();
+            while(inpNumero < (produto.size()- produto.size()) || produto.size() < inpNumero){
                 System.out.println("Produto nao existe por favor digite um numero valido");
                 System.out.println("|---- Escolha o numero do Produto ----|");
-                inpNumeroProduto = scan.nextInt();
+                validaInt();
             }
             System.out.println("|---- E para EDITAR ou S para sair ----|");
             inpOpcao = scan.next();
             if ("E".equals(inpOpcao) || "e".equals(inpOpcao)) {
-                editarProduto(inpNumeroProduto);
+                editarProduto(inpNumero);
                 System.out.println("1 - Retornar para o Menu");
                 System.out.println("2 - Olhar novamente a lista de Produto");
                 System.out.println("3 - Finalizar");
@@ -837,7 +829,7 @@ public class Sessao {
 
     public void editarCliente(int i) {
         Scanner scan = new Scanner(System.in);
-        int inpOpcaoEdicao;
+        int inpNumero;
         String novo;
         int numero;
         //passar como parametro a posição do cliente a ser editado
@@ -860,8 +852,9 @@ public class Sessao {
         System.out.println("|---- 10 - " + cliente.get(i).getDataCadastro());
         System.out.println("|---- 11 - " + cliente.get(i).getNumero());
 
-        inpOpcaoEdicao = scan.nextInt();
-        switch (inpOpcaoEdicao) {
+        inpNumero = scan.nextInt();
+        scan.nextLine();
+        switch (inpNumero) {
             case 1:
                 System.out.println("|---- Menu Cliente ----|");
                 System.out.println("|---- Digite o novo NOME ----|");
@@ -957,7 +950,7 @@ public class Sessao {
 
     public void editarFornecedor(int i) {
         Scanner scan = new Scanner(System.in);
-        int inpOpcaoEdicao;
+        int inpNumero;
         String novo;
 
         //passar como parametro a posição do fornecedor a ser editado
@@ -980,8 +973,9 @@ public class Sessao {
         System.out.println("|---- 10 - " + fornecedor.get(i).getNumero());
         System.out.println("|---- 11 - " + fornecedor.get(i).getDataCadastro());
 
-        inpOpcaoEdicao = scan.nextInt();
-        switch (inpOpcaoEdicao) {
+        inpNumero = scan.nextInt();
+        scan.nextLine();
+        switch (inpNumero) {
             case 1:
                 System.out.println("|---- Menu Fornecedor ----|");
                 System.out.println("|---- Digite o novo NOME Fantasia ----|");
@@ -1078,7 +1072,7 @@ public class Sessao {
 
     public void editarVendedor(int i) {
         Scanner scan = new Scanner(System.in);
-        int inpOpcaoEdicao;
+        int inpNumero;
         String novo;
         //passar como parametro a posição do vendedor a ser editado
         //fake limpa tela
@@ -1100,8 +1094,9 @@ public class Sessao {
         System.out.println("|---- 10 - " + vendedor.get(i).getDataCadastro());
         System.out.println("|---- 11 - " + vendedor.get(i).getLogin());
         System.out.println("|---- 12 - " + vendedor.get(i).getSenha());
-        inpOpcaoEdicao = scan.nextInt();
-        switch (inpOpcaoEdicao) {
+        inpNumero = scan.nextInt();
+        scan.nextLine();
+        switch (inpNumero) {
             case 1:
                 System.out.println("|---- Menu Vendedor ----|");
                 System.out.println("|---- Digite o novo NOME ----|");
@@ -1201,7 +1196,7 @@ public class Sessao {
 
     public void editarProduto(int i) {
         Scanner scan = new Scanner(System.in);
-        int inpOpcaoEdicao;
+        int inpNumero;
         String novo;
         int numero;
         //passar como parametro a posição do cliente a ser editado
@@ -1218,8 +1213,9 @@ public class Sessao {
         System.out.println("|---- 4 - " + produto.get(i).getPreco());
         System.out.println("|---- 5 - " + produto.get(i).getFornecedornome());
 
-        inpOpcaoEdicao = scan.nextInt();
-        switch (inpOpcaoEdicao) {
+        inpNumero = scan.nextInt();
+        scan.nextLine();
+        switch (inpNumero) {
             case 1:
                 System.out.println("|---- Menu Produto ----|");
                 System.out.println("|---- Digite o novo NOME ----|");
@@ -1440,6 +1436,23 @@ public class Sessao {
             }
         }
         return tempVendedor;
+    }
+    public int validaInt(){
+        Scanner scan = new Scanner(System.in);
+        boolean bError = true;
+            while (bError) {
+                if (scan.hasNextInt()){
+                    inpNumero = scan.nextInt();
+                        scan.nextLine();
+                }else {
+                    scan.next();
+                    System.out.print("Opcao NAO existe, Escolha um numero Valido: ");
+                    continue;
+                }
+                
+                bError = false;
+            }
+            return inpNumero;
     }
     
 }
