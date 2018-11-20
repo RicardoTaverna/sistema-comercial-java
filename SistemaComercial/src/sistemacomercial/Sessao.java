@@ -136,7 +136,7 @@ public class Sessao {
             }
             System.out.println("|---- Escolha o numero do vendedor ----|");
             inpNumeroVendedor = scan.nextInt();
-            while(inpNumeroVendedor < vendedor.size() || vendedor.size() < inpNumeroVendedor){
+            while(inpNumeroVendedor < (vendedor.size()- vendedor.size()) || vendedor.size() < inpNumeroVendedor){
                 System.out.println("Vendedor nao existe por favor digite um numero valido");
                 System.out.println("|---- Escolha o numero do vendedor ----|");
                 inpNumeroVendedor = scan.nextInt();
@@ -231,7 +231,7 @@ public class Sessao {
             }
             System.out.println("|---- Escolha o numero do Cliente ----|");
             inpNumeroCliente = scan.nextInt();
-            while(inpNumeroCliente < cliente.size() || cliente.size() < inpNumeroCliente){
+            while(inpNumeroCliente < (cliente.size()- cliente.size()) || cliente.size() < inpNumeroCliente){
                 System.out.println("Fornecedor nao existe por favor digite um numero valido");
                 System.out.println("|---- Escolha o numero do Fornecedor----|");
                 inpNumeroCliente = scan.nextInt();
@@ -297,7 +297,7 @@ public class Sessao {
             }
             System.out.println("|---- Escolha o numero do Cliente ----|");
             inpNumeroCliente = scan.nextInt();
-            while(inpNumeroCliente < cliente.size() || cliente.size() < inpNumeroCliente){
+            while(inpNumeroCliente < (cliente.size()- cliente.size()) || cliente.size() < inpNumeroCliente){
                 System.out.println("Cliente nao existe por favor digite um numero valido");
                 System.out.println("|---- Escolha o numero do Cliente ----|");
                 inpNumeroCliente = scan.nextInt();
@@ -342,7 +342,7 @@ public class Sessao {
             }
             System.out.println("|---- Escolha o numero do Fornecedor ----|");
             inpNumeroFornecedor = scan.nextInt();
-            while(inpNumeroFornecedor < fornecedor.size() || fornecedor.size() < inpNumeroFornecedor){
+            while(inpNumeroFornecedor < (fornecedor.size()- fornecedor.size()) || fornecedor.size() < inpNumeroFornecedor){
                 System.out.println("Fornecedor nao existe por favor digite um numero valido");
                 System.out.println("|---- Escolha o numero do Fornecedor----|");
                 inpNumeroFornecedor = scan.nextInt();
@@ -408,7 +408,7 @@ public class Sessao {
             }
             System.out.println("|---- Escolha o numero do Fornecedor ----|");
             inpNumeroFornecedor = scan.nextInt();
-            while(inpNumeroFornecedor < fornecedor.size() || fornecedor.size() < inpNumeroFornecedor){
+            while(inpNumeroFornecedor < (fornecedor.size()- fornecedor.size()) || fornecedor.size() < inpNumeroFornecedor){
                 System.out.println("Fornecedor nao existe por favor digite um numero valido");
                 System.out.println("|---- Escolha o numero do Fornecedor ----|");
                 inpNumeroFornecedor = scan.nextInt();
@@ -453,7 +453,7 @@ public class Sessao {
             }
             System.out.println("|---- Escolha o numero do Produto ----|");
             inpNumeroProduto = scan.nextInt();
-            while(inpNumeroProduto < produto.size() || produto.size() < inpNumeroProduto){
+            while(inpNumeroProduto < (produto.size()- produto.size()) || produto.size() < inpNumeroProduto){
                 System.out.println("Produto nao existe por favor digite um numero valido");
                 System.out.println("|---- Escolha o numero do Produto ----|");
                 inpNumeroProduto = scan.nextInt();
@@ -518,7 +518,7 @@ public class Sessao {
             }
             System.out.println("|---- Escolha o numero do Produto ----|");
             inpNumeroProduto = scan.nextInt();
-            while(inpNumeroProduto < produto.size() || produto.size() < inpNumeroProduto){
+            while(inpNumeroProduto < (produto.size()- produto.size()) || produto.size() < inpNumeroProduto){
                 System.out.println("Produto nao existe por favor digite um numero valido");
                 System.out.println("|---- Escolha o numero do Produto ----|");
                 inpNumeroProduto = scan.nextInt();
@@ -556,7 +556,18 @@ public class Sessao {
         Scanner scan = new Scanner(System.in);
         String tempnome, tempsobrenome, tempdatanascimento, temptelefone, tempCPF, tempcidade, tempestado, temppais, tempendereco, tempdataCadastro, templogin, tempsenha, temppapel;
         int inptOpcao;
+        Vendedor tempVendedor2;
         System.out.println("|---- Menu Cadastrar Vendedor ----|");
+        System.out.print("Digite o CPF: ");
+        tempCPF = scan.nextLine();
+        for (int i = 0; i < vendedor.size(); i = i + 1) {
+            tempVendedor2 = vendedor.get(i);
+            if (tempCPF.equals(tempVendedor2.getCPF())) {
+                System.out.println("CPF já cadastrado");
+                try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+                newSessao();   
+            }
+        }
         System.out.print("Digite o NOME: ");
         tempnome = scan.nextLine();
         System.out.print("Digite o SOBRENOME: ");
@@ -565,8 +576,6 @@ public class Sessao {
         tempdatanascimento = scan.nextLine();
         System.out.print("Digite o TELEFONE: ");
         temptelefone = scan.nextLine();
-        System.out.print("Digite o CPF: ");
-        tempCPF = scan.nextLine();
         System.out.print("Digite a CIDADE: ");
         tempcidade = scan.nextLine();
         System.out.print("Digite o ESTADO: ");
@@ -624,7 +633,19 @@ public class Sessao {
         Scanner scan = new Scanner(System.in);
         String tempnome, tempsobrenome, tempdatanascimento, temptelefone, tempCPF, tempcidade, tempestado, temppais, tempendereco, tempnumero, tempdataCadastro;
         int inptOpcao;
+        Cliente tempCliente2;
         System.out.println("|---- Menu Cadastrar Cliente ----|");
+        System.out.print("Digite o CPF: ");
+        tempCPF = scan.nextLine();
+         for (int i = 0; i < cliente.size(); i = i + 1) {
+            tempCliente2 = cliente.get(i);
+            if (tempCPF.equals(tempCliente2.getCPF())) {
+                System.out.println("CPF já cadastrado");
+                try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+                newSessao();   
+            }
+        }       
+        
         System.out.print("Digite o NOME: ");
         tempnome = scan.nextLine();
         System.out.print("Digite o SOBRENOME: ");
@@ -633,8 +654,7 @@ public class Sessao {
         tempdatanascimento = scan.nextLine();
         System.out.print("Digite o TELEFONE: ");
         temptelefone = scan.nextLine();
-        System.out.print("Digite o CPF: ");
-        tempCPF = scan.nextLine();
+
         System.out.print("Digite a CIDADE: ");
         tempcidade = scan.nextLine();
         System.out.print("Digite o ESTADO: ");
@@ -725,7 +745,18 @@ public class Sessao {
         Scanner scan = new Scanner(System.in);
         String tempnome, temprazaosocial, tempemail, temptelefone, tempCNPJ, tempcidade, tempestado, temppais, tempendereco, tempnumero, tempdataCadastro;
         int inptOpcao;
+        Fornecedor tempFornecedor2;
         System.out.println("|---- Menu Cadastrar Fornecedor ----|");
+        System.out.print("Digite o CNPJ: ");
+        tempCNPJ = scan.nextLine();
+         for (int i = 0; i < fornecedor.size(); i = i + 1) {
+            tempFornecedor2 = fornecedor.get(i);
+            if (tempCNPJ.equals(tempFornecedor2.getCNPJ())) {
+                System.out.println("CNPJ já cadastrado");
+                try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+                newSessao();   
+            }
+        }            
         System.out.print("Digite o NOME Fantasia: ");
         tempnome = scan.nextLine();
         System.out.print("Digite a Razao Social: ");
@@ -734,8 +765,6 @@ public class Sessao {
         tempemail = scan.nextLine();
         System.out.print("Digite o TELEFONE: ");
         temptelefone = scan.nextLine();
-        System.out.print("Digite o CNPJ: ");
-        tempCNPJ = scan.nextLine();
         System.out.print("Digite a CIDADE: ");
         tempcidade = scan.nextLine();
         System.out.print("Digite o ESTADO: ");
@@ -1229,8 +1258,8 @@ public class Sessao {
 
     public void registrarVenda() {
         Scanner scan = new Scanner(System.in);
-        String vendedorVenda, clienteVenda, produtoVenda, achou = null;
-        int produtoQtdeVenda, validaProduto = 0, validaVendedor = 0, validaCliente = 0;
+        String vendedorVenda, clienteVenda,  achou = null;
+        int produtoQtdeVenda, validaProduto = 0, validaVendedor = 0, validaCliente = 0,produtoVenda;
 
         Vendedor tempVendedor;
         Cliente tempCliente;
@@ -1239,14 +1268,13 @@ public class Sessao {
         System.out.println("|---- Menu Registrar Venda ----|");
         System.out.println("Lista de Vendedores:");
         for (int i = 0; i < vendedor.size(); i = i + 1) {
-            System.out.println(vendedor.get(i).getNome());
-        }
+            System.out.println(vendedor.get(i).getNome()+ " " +vendedor.get(i).getSobrenome() + " CPF: "+ vendedor.get(i).getCPF());
+        }       
         System.out.print("|---- Vendedor: ");
         vendedorVenda = scan.nextLine();
         for (int i = 0; i < vendedor.size(); i = i + 1) {
             tempVendedor = vendedor.get(i);
             if (vendedorVenda.equals(tempVendedor.getNome())) {
-
                 achou = "sim";
                 validaVendedor = i;
                 i = vendedor.size() + 1;
@@ -1261,13 +1289,13 @@ public class Sessao {
         }
         System.out.println("Lista de Clientes:");
         for (int i = 0; i < cliente.size(); i = i + 1) {
-            System.out.println(cliente.get(i).getNome());
+            System.out.println(cliente.get(i).getNome()+ " " +cliente.get(i).getSobrenome() + " CPF: "+ cliente.get(i).getCPF());
         }
-        System.out.print("|---- Cliente: ");
+        System.out.print("|----Digite o CPF do Cliente: ");
         clienteVenda = scan.nextLine();
         for (int i = 0; i < cliente.size(); i = i + 1) {
             tempCliente = cliente.get(i);
-            if (clienteVenda.equals(tempCliente.getNome())) {
+            if (clienteVenda.equals(tempCliente.getCPF())) {
                 achou = "sim";
                 validaCliente = i;
                 i = cliente.size() + 1;
@@ -1283,36 +1311,37 @@ public class Sessao {
 
         System.out.println("Lista de Produtos:");
         for (int i = 0; i < produto.size(); i = i + 1) {
-            System.out.println(produto.get(i).getNome());
-        }
-        System.out.print("|---- Produto: ");
-        produtoVenda = scan.nextLine();
-
-        for (int i = 0; i < produto.size(); i = i + 1) {
-            tempProduto = produto.get(i);
-            if (produtoVenda.equals(tempProduto.getNome())) {
-                achou = "sim";
-                validaProduto = i;
-
-                i = produto.size() + 1;
+                System.out.println("|---- " + i + ") " + produto.get(i).getNome() + " " + produto.get(i).getDescricao()+ " " + produto.get(i).getPreco());
             }
+        System.out.print("|---- Produto: ");
+        produtoVenda = scan.nextInt();
+        while(produtoVenda < (produto.size()- produto.size()) || produto.size() < produtoVenda){
+            System.out.println("Produto nao existe por favor digite um numero valido");
+            System.out.println("|---- Escolha o numero do Produto ----|");
+            produtoVenda = scan.nextInt();
         }
 
-        tempProduto = produto.get(validaProduto);
-        if ("sim".equals(achou)) {
-            System.out.println("|---- Produto Validado");
-            achou = null;
-        } else {
-            System.out.println("|---- Produto nao encontrado");
-            try { Thread.sleep (1000); } catch (InterruptedException ex) {}
-            newSessao();
-        }
+        tempProduto = produto.get(produtoVenda);
+        System.out.println("|---- Produto Validado");
 
         System.out.print("|---- Quantidade: ");
         produtoQtdeVenda = scan.nextInt();
+        //Arruma estoque da quantidade de produtos
+        int qntde = tempProduto.getQuantidade();
+        qntde = qntde - produtoQtdeVenda;
+        while(qntde < 0){
+            qntde = 0;
+            System.out.println("Esta faltando produto no estoque");
+            System.out.println("Quantidade Maxima: " +tempProduto.getQuantidade());
+            System.out.print("|---- Quantidade: ");
+            produtoQtdeVenda = scan.nextInt();
+            qntde = tempProduto.getQuantidade();
+            qntde = qntde - produtoQtdeVenda;
+        }
+        tempProduto.setQuantidade(qntde);
+
         double valorVenda = tempProduto.getPreco() * produtoQtdeVenda;
         System.out.println("|---- Valor: " + (valorVenda));
-        //Arruma estoque da quantidade de produtos
         System.out.print("|---- Digite 1 para pagar com CARTAO DE CREDITO \n|---- Digite 2 para pagar com CARTAO DE DEBITO "
                 + "\n|---- Digite 3 para pagar com DINHEIRO: ");
         int pagamento = scan.nextInt();
@@ -1328,9 +1357,8 @@ public class Sessao {
             dinheiro = dinheiro + valorVenda;
 
         }
-        int qntde = tempProduto.getQuantidade();
-        qntde = qntde - produtoQtdeVenda;
-        tempProduto.setQuantidade(qntde);
+                
+
         tempVendedor = vendedor.get(validaVendedor);
         tempCliente = cliente.get(validaCliente);
 
