@@ -80,12 +80,20 @@ public class Sessao {
             System.out.println("|---- 11) Fechamento do Dia");
             System.out.print("Escolha o número do MENU: ");
             Scanner scan = new Scanner(System.in);
-            try {
-                inpMenuVendedor = scan.nextInt();
-            } catch (java.util.InputMismatchException nexc) {
-                System.out.println("Input invalido, tente novamente");
-                inpMenuVendedor = scan.nextInt();
+            inpMenuVendedor = 0;
+            boolean bError = true;
+            while (bError) {
+                if (scan.hasNextInt())
+                    inpMenuVendedor = scan.nextInt();
+                else {
+                    scan.next();
+                    System.out.print("Opcao NAO existe, Escolha o número do MENU: ");
+                    continue;
+                }
+                
+                bError = false;
             }
+            System.out.println(inpMenuVendedor);
             
             switch (inpMenuVendedor) {
                 case 1:
