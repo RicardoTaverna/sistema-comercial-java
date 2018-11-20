@@ -593,11 +593,27 @@ public class Sessao {
         if ("vendedorAdm".equals(validaPapel)) {
             System.out.print("Digite o PAPEL(vendedor-administrador): ");
             temppapel = scan.nextLine();
+            while(!"vendedor".equals(temppapel) && !"administrador".equals(temppapel)){
+                System.out.print("Digite o PAPEL(vendedor-administrador): ");
+                temppapel = scan.nextLine();
+            }
         } else {
             temppapel = "vendedor";
         }
         System.out.print("Digite seu Login: ");
         templogin = scan.nextLine();
+        Vendedor templogin2;
+        String achou = null;
+        for (int i = 0; i < vendedor.size(); i = i + 1) {
+            templogin2 = vendedor.get(i);
+            if (templogin.equals(templogin2.getLogin())) {
+                System.out.println("Login já cadastrado");
+                try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+                cadastraVendedor();   
+            }
+        }
+  
+
         System.out.print("Digite o CODIGO de vendedor: ");
         tempcodigo = scan.nextInt();
         //pegar a data de cadastro automatico do sistema através da biblioteca java.utils.Date
