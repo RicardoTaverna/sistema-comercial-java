@@ -26,6 +26,7 @@ public class Sessao{
    private boolean validador = false;
    private int inpMenuVendedor, inpDigito, inpNumeroVendedor,inpNumeroCliente,inpNumeroFornecedor,inpNumeroProduto;
    private String inpOpcao;
+   private double debito = 0.0,dinheiro =0.0;
     
     public void login(){
         Scanner scan = new Scanner(System.in);
@@ -107,8 +108,12 @@ public class Sessao{
                     registrarVenda();
                     break;
                 case 10:
+                    listarVenda();
+                    break;
+                            
                 case 11:
-                    
+                    fechamento();
+                    break;
                     
                 default:
                     System.out.println("Numero inexistente");
@@ -1109,6 +1114,7 @@ public class Sessao{
         Scanner scan = new Scanner(System.in);
         String vendedorVenda, clienteVenda, produtoVenda,achou = null;
         int produtoQtdeVenda,validaProduto = 0,validaVendedor =0,validaCliente =0;
+
         Vendedor tempVendedor;
         Cliente tempCliente;
         Produto tempProduto;
@@ -1186,8 +1192,24 @@ public class Sessao{
         
         System.out.print("|---- Quantidade: ");
         produtoQtdeVenda = scan.nextInt();
-        System.out.println("|---- Valor: " + (tempProduto.getPreco() * produtoQtdeVenda));
+       double valorVenda = tempProduto.getPreco() * produtoQtdeVenda;
+        System.out.println("|---- Valor: " + (valorVenda));
         //Arruma estoque da quantidade de produtos
+        System.out.print("|---- Digite 1 para pagar com CARTAO DE CREDITO \n|---- Digite 2 para pagar com CARTAO DE DEBITO "
+                + "\n|---- Digite 3 para pagar com DINHEIRO: ");
+        int pagamento = scan.nextInt(); 
+        while (pagamento > 3 || pagamento < 1){
+            System.out.println("Opcao invalida por favor digite novamente");
+            System.out.print("|---- Digite 1 para pagar com CARTAO DE CREDITO \n|---- Digite 2 para pagar com CARTAO DE DEBITO "
+            + "\n|---- Digite 3 para pagar com DINHEIRO: ");
+            pagamento = scan.nextInt(); 
+        }
+        if (pagamento == 2){       
+            debito = debito + valorVenda;       
+        }else if (pagamento == 3){
+            dinheiro = dinheiro +valorVenda;
+        
+        }
         int qntde = tempProduto.getQuantidade();
         qntde = qntde - produtoQtdeVenda;
         tempProduto.setQuantidade(qntde);
@@ -1202,8 +1224,40 @@ public class Sessao{
             System.out.println("Existem "+ qntde +" produtos no estoque");
         }
         
-        Venda tempvenda = new Venda(tempVendedor,tempCliente,tempProduto, venda);
+        Venda tempvenda = new Venda(tempVendedor,tempCliente,tempProduto,pagamento, venda);
+        System.out.println("Para retornar ao menu Digite 1 para sair do programa digite 2");
+        int numero = scan.nextInt();
+        switch (numero){
+            case 1:
+                newSessao();
+                break;
+            default:
+                break;
+        }
+                
+    }
+    public void listarVenda(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Legenda: ");
+        System.out.println("Pagamentos com cartao de credito 1. \n Pagamentos com Cartao de debito 2. \n Pagamentos com Dinheiro 3. ");
+        for(int i = 0; i < venda.size(); i = i + 1){  
+            System.out.println("____Venda____ "+ (i + 1)+":");
+            System.out.print("Vendedor: "+ venda.get(i).getVendedorNome()+" "); 
+            System.out.print("Cliente: " +venda.get(i).getClienteNome()+" "); 
+            System.out.print("Produto: "+venda.get(i).getProdutoNome()+" "); 
+            System.out.print("Pagamento: "+venda.get(i).getPagamento()+"\n "); 
+        }
+        System.out.println("Voltar para o Menu ? s/n? Caso digite n saira do programa");
+        String voltar = scan.next();
+        if ("s".equals(voltar) || "S".equals(voltar)){
+            newSessao();
+        }else{
+            System.out.println("Desligando");
+        }
         
     }
-     
+    public void fechamento(){
+        System.out.println("Entrou um total de:R$: " +debito+ " em debito");
+        System.out.println("Entrou um total de:R$: " +dinheiro+ " em dinheiro");
+    }
 }
