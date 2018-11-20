@@ -91,7 +91,7 @@ public class Sessao{
                     cadastraFornecedor();
                     break;
                 case 4:
-                    cadastraVendedor();
+                    cadastraProduto();
                     break;
                 case 5:
                     listarVendedor();
@@ -557,53 +557,34 @@ public class Sessao{
         Fornecedor tempFornecedor;
         
         Scanner scan = new Scanner(System.in);
-        String tempnome, tempsobrenome, tempdatanascimento, temptelefone, tempCPF, tempcidade, tempestado, temppais, tempendereco,tempnumero, tempdataCadastro;
-        int inptOpcao;
+        String tempnome, tempdescricao;
+        int inptOpcao,tempquantidade;
+        double temppreco;
         System.out.println("|---- Menu Cadastrar Produto ----|");
         System.out.print("Digite o NOME: ");
-        tempnome = scan.next();
-        System.out.print("Digite o SOBRENOME: ");
-        tempsobrenome = scan.next();
-        System.out.print("Digite a DATA DE NASCIMENTO(dd/mm/aaaa): ");
-        tempdatanascimento = scan.next();
-        System.out.print("Digite o FORNECEDOR: ");
-        
+        tempnome = scan.nextLine();
+        System.out.print("Digite a Descricao: ");
+        tempdescricao = scan.nextLine();
+        System.out.print("Digite a Quantidade: ");
+        tempquantidade = scan.nextInt();
+        System.out.print("Digite o Preco: ");
+        temppreco = scan.nextDouble();             
         int posicaoFornecedor;
-        
+       
         for(int i = 0; i < fornecedor.size(); i = i + 1){          
             System.out.println("|---- " + i + ") " + fornecedor.get(i).getNomeFantasia() + " " +  fornecedor.get(i).getRazaoSocial() + " - " +  fornecedor.get(i).getCNPJ());
         }
+        System.out.print("Digite o FORNECEDOR: ");
         System.out.println("|---- Selecione a posição do forncedor ----|");        
         posicaoFornecedor = scan.nextInt();
         tempFornecedor = fornecedor.get(posicaoFornecedor);
+                                    
+        Produto tempProduto = new Produto(tempnome, tempdescricao, tempquantidade, temppreco, tempFornecedor, produto);
         
-        temptelefone = scan.next();
-        System.out.print("Digite o CPF: ");
-        tempCPF = scan.next();
-        System.out.print("Digite a CIDADE: ");
-        tempcidade = scan.next();
-        System.out.print("Digite o ESTADO: ");
-        tempestado = scan.next();
-        System.out.print("Digite o PAIS: ");
-        temppais = scan.next();
-        System.out.print("Digite o ENDEREÇO: ");
-        tempendereco = scan.next();    
-        System.out.print("Digite o Numero: ");
-        tempnumero = scan.next();  
- 
-        
-        //pegar a data de cadastro automatico do sistema através da biblioteca java.utils.Date
-        Date data = new Date();
-        tempdataCadastro = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(data);
-               
-                
-        Produto tempProduto = new Produto(nome, descricao, quantidade, preco, tempFornecedor, produto);
-        
-        System.out.println("|---- Cadastrado o Cliente " + tempCliente.getNome());
-        System.out.println("|---- Data de Cadastro: " + tempCliente.getDataCadastro());
+        System.out.println("|---- Cadastrado o Produto " + tempProduto.getNome());
         System.out.println("|---- Escolha uma opção abaixo ---|");
         System.out.println("|---- 1) Concluir");
-        System.out.println("|---- 2) Adicionar outro vendedor");
+        System.out.println("|---- 2) Adicionar outro Produto");
         System.out.print("|---- Opcao: ");
         inptOpcao = scan.nextInt();
         switch(inptOpcao){
@@ -611,7 +592,7 @@ public class Sessao{
                 
                 break;
             case 2:
-                cadastraCliente();
+                cadastraProduto();
                 break;
             default:
                 System.out.println("Opção invalida, retornando ao menu principal");
