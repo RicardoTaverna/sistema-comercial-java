@@ -80,7 +80,13 @@ public class Sessao {
             System.out.println("|---- 11) Fechamento do Dia");
             System.out.print("Escolha o número do MENU: ");
             Scanner scan = new Scanner(System.in);
-            inpMenuVendedor = scan.nextInt();
+            try {
+                inpMenuVendedor = scan.nextInt();
+            } catch (java.util.InputMismatchException nexc) {
+                System.out.println("Input invalido, tente novamente");
+                inpMenuVendedor = scan.nextInt();
+            }
+            
             switch (inpMenuVendedor) {
                 case 1:
                     cadastraVendedor();
