@@ -623,7 +623,7 @@ public class Sessao {
         inptOpcao = scan.nextInt();
         switch (inptOpcao) {
             case 1:
-
+                newSessao();
                 break;
             case 2:
                 cadastraVendedor();
@@ -688,6 +688,7 @@ public class Sessao {
         inptOpcao = scan.nextInt();
         switch (inptOpcao) {
             case 1:
+                newSessao();
                 break;
             case 2:
                 cadastraCliente();
@@ -736,7 +737,7 @@ public class Sessao {
         inptOpcao = scan.nextInt();
         switch (inptOpcao) {
             case 1:
-
+                newSessao();
                 break;
             case 2:
                 cadastraProduto();
@@ -798,7 +799,7 @@ public class Sessao {
         inptOpcao = scan.nextInt();
         switch (inptOpcao) {
             case 1:
-
+                newSessao();
                 break;
             case 2:
                 cadastraFornecedor();
