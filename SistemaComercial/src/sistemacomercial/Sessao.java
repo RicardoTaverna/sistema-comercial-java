@@ -616,6 +616,7 @@ public class Sessao {
 
         System.out.print("Digite o CODIGO de vendedor: ");
         tempcodigo = scan.nextInt();
+        // N sei pq, mas precisa do print abaixo...wtf
         System.out.println("");
         //pegar a data de cadastro automatico do sistema através da biblioteca java.utils.Date
         Date data = new Date();
