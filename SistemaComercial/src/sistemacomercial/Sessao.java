@@ -78,6 +78,7 @@ public class Sessao {
             System.out.println("|---- 9) Registrar Venda");
             System.out.println("|---- 10) Listar Vendas");
             System.out.println("|---- 11) Fechamento do Dia");
+            System.out.println("|---- 12) Sair");
             System.out.print("Escolha o número do MENU: ");
             Scanner scan = new Scanner(System.in);
 
@@ -118,6 +119,9 @@ public class Sessao {
 
                 case 11:
                     fechamento();
+                    break;
+                case 12:
+                   
                     break;
 
                 default:
@@ -603,7 +607,6 @@ public class Sessao {
         System.out.print("Digite seu Login: ");
         templogin = scan.nextLine();
         Vendedor templogin2;
-        String achou = null;
         for (int i = 0; i < vendedor.size(); i = i + 1) {
             templogin2 = vendedor.get(i);
             if (templogin.equals(templogin2.getLogin())) {
@@ -618,6 +621,15 @@ public class Sessao {
         tempcodigo = scan.nextInt();
         // N sei pq, mas precisa do print abaixo...wtf
         System.out.println("");
+        Vendedor tempCod2;
+        for (int i = 0; i < vendedor.size(); i = i + 1) {
+            tempCod2 = vendedor.get(i);
+            if (tempcodigo == tempCod2.getCodigo()) {
+                System.out.println("Codigo  já cadastrado");
+                try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+                cadastraVendedor();   
+            }
+        }
         //pegar a data de cadastro automatico do sistema através da biblioteca java.utils.Date
         Date data = new Date();
         tempdataCadastro = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(data);
