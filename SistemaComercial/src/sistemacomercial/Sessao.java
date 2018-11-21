@@ -626,7 +626,7 @@ public class Sessao {
 
 
         //senha criada automaticamente atravez da 1 letra do nome 1 letra do sobrenome @ ano de nascimento
-        tempsenha = (tempnome.substring(0, 1) + tempsobrenome.substring(0, 1) + "@" + tempdatanascimento.substring(6, 10));
+        tempsenha = tempCPF;
 
         Vendedor tempVendedor = new Vendedor(tempnome, tempsobrenome, tempdatanascimento, temptelefone, tempCPF, tempcidade, tempestado, temppais, tempendereco, tempdataCadastro, templogin, tempsenha, temppapel, tempcodigo, vendedor);
 
