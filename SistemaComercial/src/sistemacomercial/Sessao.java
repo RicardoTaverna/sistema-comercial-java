@@ -616,6 +616,7 @@ public class Sessao {
 
         System.out.print("Digite o CODIGO de vendedor: ");
         tempcodigo = scan.nextInt();
+        System.out.println("");
         //pegar a data de cadastro automatico do sistema através da biblioteca java.utils.Date
         Date data = new Date();
         tempdataCadastro = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(data);
